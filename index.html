@@ -694,6 +694,8 @@
     </button>
   </div>
   <form class="presu-form" id="presu-form" method="dialog" novalidate>
+    <!-- Campo trampa contra robots: las personas no lo ven ni lo rellenan -->
+    <div class="sr-only" aria-hidden="true"><label>No rellenar <input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
     <fieldset class="grupo">
       <legend>¿Qué necesitas?</legend>
       <div class="opciones">
@@ -988,8 +990,9 @@
     (window.requestIdleCallback || setTimeout)(pintaP);
   }
   // ---------- Presupuesto ----------
-  // Correo que recibe las solicitudes. Mientras esté vacío, el formulario abre el programa de correo con todo rellenado.
-  const CORREO_PRESUPUESTOS = '';
+  // Servicio que envía la solicitud por correo a adm@massolis.com: Google Apps Script en la cuenta adm@massolis.com
+  // (código en _servicio-presupuesto/Codigo.gs). Si fallara, se ofrece escribir directamente a adm@massolis.com.
+  const ENVIO_PRESUPUESTOS = 'https://script.google.com/macros/s/AKfycbwiZe72M6XBN9bN_XOy8Alh6etMBYKDu5Sxz1XNWWkeIf62L0nBWdMdjhQ2XWaYp-hsJg/exec';
   const presu = document.getElementById('presu-form');
   if (presu) {
     // Ventana emergente: se abre con cualquier botón de presupuesto (y deja marcado el plan si viene de uno)
@@ -1036,23 +1039,25 @@
       };
       const asunto = 'Solicitud de presupuesto · ' + datos['Servicio'] + ' · ' + datos['Nombre'];
       const boton = presu.querySelector('button[type="submit"]');
-      if (CORREO_PRESUPUESTOS) {
-        boton.disabled = true; msg.className = 'presu-msg'; msg.textContent = 'Enviando…';
-        try {
-          const r = await fetch('https://formsubmit.co/ajax/' + CORREO_PRESUPUESTOS, {
-            method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(Object.assign({ _subject: asunto, _template: 'table', _captcha: 'false', _replyto: email || undefined }, datos))
-          });
-          if (!r.ok) throw new Error(r.status);
-          presu.reset(); msg.textContent = '¡Gracias, ' + datos['Nombre'].split(' ')[0] + '! Te responderemos muy pronto.';
-        } catch (err) {
-          msg.className = 'presu-msg err'; msg.textContent = 'No se ha podido enviar. Inténtalo de nuevo en unos minutos.';
-        } finally { boton.disabled = false; }
-      } else {
-        const cuerpo = Object.entries(datos).map(([k, x]) => k + ': ' + x).join('\n');
-        location.href = 'mailto:adm@massolis.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
-        msg.className = 'presu-msg'; msg.textContent = 'Se ha abierto tu correo con la solicitud lista para enviar.';
-      }
+      boton.disabled = true; msg.className = 'presu-msg'; msg.textContent = 'Enviando…';
+      try {
+        // Sin cabecera Content-Type (va como texto): Google no acepta la consulta previa del navegador
+        const r = await fetch(ENVIO_PRESUPUESTOS, {
+          method: 'POST',
+          body: JSON.stringify({
+            plan: v('plan'), vivienda: v('vivienda'), metros: v('metros'), frecuencia: v('frecuencia'), extras: d.getAll('extras'),
+            nombre: v('nombre'), telefono: tel, email: email, localidad: v('localidad'), mensaje: v('mensaje'),
+            privacidad: !!d.get('privacidad'), web: v('web')
+          })
+        });
+        const res = await r.json();
+        if (!r.ok || !res.ok) throw new Error(res.error || r.status);
+        presu.reset(); msg.textContent = '¡Gracias, ' + datos['Nombre'].split(' ')[0] + '! Hemos recibido tu solicitud y te responderemos muy pronto.';
+      } catch (err) {
+        msg.className = 'presu-msg err';
+        msg.innerHTML = 'No se ha podido enviar. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:adm@massolis.com?subject=' +
+          encodeURIComponent(asunto) + '">adm@massolis.com</a>.';
+      } finally { boton.disabled = false; }
     });
   }
   // Ventana de opiniones
