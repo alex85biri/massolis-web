@@ -102,10 +102,10 @@
       --phone-edge: #26345E;
 
       /* Espacios */
-      --gutter: 24px;
+      --gutter: clamp(24px, 2vw, 40px);   /* margen lateral: crece un poco en pantallas grandes */
       --section: 96px;          /* separación entre secciones */
       --section-sm: 64px;       /* en móvil */
-      --container: 1320px;
+      --container: min(2400px, max(1320px, 94vw));   /* ancho máximo: aprovecha las pantallas grandes sin pasar de 2400 px */
 
       /* Movimiento */
       --ease: cubic-bezier(.2, .8, .2, 1);
@@ -1046,6 +1046,23 @@
   @media (prefers-reduced-motion: reduce) { .spark::before, .spark svg { animation: none; } }
   @media (prefers-reduced-motion: reduce) { .plus-star { animation: none; } }
   @media (prefers-reduced-motion: reduce) { .e404-estrella svg { animation: none; } }
+  /* Pantallas grandes (desde 1800 px): la web ocupa más ancho, así que los títulos y la portada crecen con ella */
+  @media (min-width: 1800px) {
+      :root {
+        --fs-h1: clamp(72px, 4.2vw, 104px);
+        --fs-h2: clamp(44px, 2.6vw, 60px);
+        --fs-h3: clamp(32px, 1.8vw, 40px);
+      }
+      .hero-inner { padding: 88px 96px; max-width: 1120px; }
+      .lead { font-size: var(--fs-2xl); max-width: 620px; }
+      h2 { max-width: 900px; }
+      .hero {
+        background:
+          linear-gradient(90deg, rgb(var(--deep-rgb) / .9) 0, rgb(var(--deep-rgb) / .82) 640px, rgb(var(--deep-rgb) / .5) 980px, rgb(var(--deep-rgb) / 0) 1300px),
+          url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2800") center / cover no-repeat,
+          var(--navy);
+      }
+    }
   @media (max-width: 1060px) { .op-grid { --vista: 2; } }
   @media (max-width: 640px) { .op-grid { --vista: 1; } }
   @media (max-width: 1180px) {
