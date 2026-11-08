@@ -666,8 +666,8 @@
   .op-grid .op .stars { font-size: var(--fs-xl); }
   .op-grid .op q { position: relative; font-size: var(--fs-lg); line-height: 1.55; color: var(--navy-deep); }
   .op-grid .op-who .av { width: 44px; height: 44px; }
-  .pasos-nav { display: none; }
   .op-nav { margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 18px; }
+  .pasos-nav { display: none; }   /* va después de .op-nav para ganarle: flechas de los pasos solo en el móvil y la tablet (capa responsive) */
   /* Formulario para dejar una opinión */
   .op-form-wrap {
       margin-top: 28px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px;
