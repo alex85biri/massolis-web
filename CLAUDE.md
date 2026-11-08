@@ -12,6 +12,7 @@ Primera versión hecha, pendiente de opinión de la usuaria.
 - `fonts/` — tipografías servidas desde la propia web (Plus Jakarta Sans variable 400–800 e Instrument Serif cursiva, solo juego latino). **No se usa Google Fonts** (privacidad: la IP no viaja a Google; y más rápido).
 - `logo.svg` — logo original de la empresa (copiado de `Escritorio\Group 3.svg`; no modificarlo). Color del logo `#0E0057`.
 - `docs/` — informes (auditoría WCAG).
+- `design-system.html` — guía viva del sistema de diseño (no indexada).
 
 ## Privacidad y cookies (8 nov 2026)
 - **La web no usa cookies** (ni propias ni de terceros, ni analítica). Solo `localStorage` `massolis-opiniones` (la opinión que envía la propia persona), exento de consentimiento (art. 22.2 LSSI) → **no hay banner de cookies**, a propósito. Si algún día se añade analítica o publicidad, hará falta banner con consentimiento previo y actualizar `cookies.html`.
@@ -20,7 +21,7 @@ Primera versión hecha, pendiente de opinión de la usuaria.
 - **Pendiente (resaltado en amarillo en las páginas, clase `.pendiente`)**: razón social, NIF/CIF, dirección, correo real, proveedor de hosting y proveedor de envío de formularios (con sus garantías si está fuera del EEE). **Aviso legal** (`aviso-legal.html`, LSSI art. 10) hecho: titular, objeto, condiciones de uso, propiedad intelectual, responsabilidad, opiniones, datos y ley aplicable; sus datos del titular (incl. datos registrales si es sociedad y teléfono opcional) también están pendientes. Las políticas son una base redactada según RGPD/LOPDGDD/LSSI: conviene revisión profesional antes de publicar.
 
 ## Sistema de diseño (unificado el 8 nov 2026, pedido de la usuaria)
-**Una sola fuente: el bloque `:root` al principio del `<style>` de `index.html`.** Regla: el resto del CSS solo usa `var(--…)`; no se escriben colores, radios, sombras ni tamaños de letra sueltos. Si falta algo, se añade como variable en `:root`.
+**Una sola fuente: `estilos.css`**, organizado en capas de cascada `@layer tokens, base, layout, atoms, molecules, organisms, sections, pages, utilities, responsive` (cada capa solo sobrescribe a las anteriores; los tokens están en `:root` dentro de `@layer tokens`). **Guía visual en vivo: `design-system.html`** (`noindex`): lee los tokens del propio CSS y enseña colores con su contraste, tipografía, espacios, radios, sombras, capas, movimiento, primitivas de layout, átomos, moléculas, organismos y reglas de uso. Si se añade un componente, añadirlo también a la guía. Regla: el resto del CSS solo usa `var(--…)`; no se escriben colores, radios, sombras ni tamaños sueltos. Si falta algo, se añade como token.
 - **Color de marca:** `--navy-deep` (titulares), `--navy` (botones y bloques oscuros), `--navy-ink` (logo), `--sky` (acento sobre claro), `--sky-300` (antetítulos sobre oscuro), `--sky-200` (acento sobre oscuro), `--sky-100` (superficies suaves), `--app-sky` (fondo de MASSolisapp), `--star`, `--err`.
 - **Neutros:** `--white`, `--ice`, `--line`, `--line-strong`, `--text`, `--text-soft`, `--muted`, `--muted-on-dark`.
 - **Transparencias:** solo con canales: `rgb(var(--navy-rgb) / .35)` (también `--white-rgb`, `--deep-rgb`, `--sky-rgb`, `--glow-rgb`).
@@ -30,7 +31,10 @@ Primera versión hecha, pendiente de opinión de la usuaria.
 - **Espacios y movimiento:** `--gutter`, `--section` (96) / `--section-sm` (64 en móvil), `--container`, `--ease`, `--dur`.
 - **Sin modo oscuro**: se probó (8 nov 2026) y la usuaria prefirió quedarse con el diseño original en claro.
 - `--sky-ink` (#2A56B4): azul para texto pequeño sobre superficies hielo (el `--sky` no llega al contraste AA ahí). `--err-text` para errores sobre claro.
-- **Componentes comunes:** `.btn` (+ `.btn-light` blanco sobre oscuro, `.btn-lg` grande, `.arrow`), `.btn-round`, `.kicker`, y **`.on-dark`** en cada bloque oscuro (`.about`, `.eco`, `.plus`, `.plan.dark`, `.op-form-wrap`): pone antetítulos y palabras destacadas en sus tonos claros. Un bloque oscuro nuevo solo necesita esa clase.
+- **Tokens añadidos (8 nov 2026):** colores por función `--color-bg/surface/surface-alt/surface-inverse/text-strong/text/text-muted/text-inverse/border/border-control/accent/primary/primary-hover/focus` (usarlos en componentes nuevos); pesos `--fw-*`; interlineados `--lh-*`; espacios `--sp-1` (4 px) a `--sp-24` (96 px); tamaños `--size-tap-min`, `--size-control(-sm/-lg)`, `--size-icon(-sm/-lg)`, `--size-check`, `--measure`; capas `--z-base/raised/sticky/overlay/dialog/skip`; movimiento `--dur-fast/--dur/--dur-slow`, `--ease(-in/-in-out)`; puntos de corte de referencia `--bp-sm` 480 · `md` 640 · `lg` 900 · `xl` 1060 · `2xl` 1180 (en `@media` hay que escribir el número).
+- **Layout:** `.container`, `.stack` (`--stack-gap`), `.cluster` (`--cluster-gap`), `.grid-auto` (`--grid-min`), `.grid-2`, `.grid-3`, `.split`, `.section`, `.measure`.
+- **Átomos:** `.btn` (+ `.btn-light`, `.btn-lg`, `.btn-sm`, `.btn-ghost`, `.btn-block`, `.arrow`); `.btn-icon` (+ `--lg`, `--solid`, `--white`, `--on-dark`; siempre con `aria-label`); `.field` (+ `--on-dark`, `.invalido`); `.check` (+ `--on-dark`); `.chip` (+ `--photo` sobre fotos); `.chip-btn[aria-pressed]` (filtros); `.code-badge`; `.pill`; `.kicker`; `.stars`; `.sr-only`. Nombres: variante con doble guion, estados con ARIA.
+- **Componentes comunes:** `.btn` (+ `.btn-light` blanco sobre oscuro, `.btn-lg` grande, `.arrow`), `.kicker`, y **`.on-dark`** en cada bloque oscuro (`.about`, `.eco`, `.plus`, `.plan.dark`, `.op-form-wrap`): pone antetítulos y palabras destacadas en sus tonos claros. Un bloque oscuro nuevo solo necesita esa clase.
 
 ## SEO (8 nov 2026)
 Lighthouse en móvil con compresión (como en hosting real): **SEO 100 · Accesibilidad 100 · Buenas prácticas 100 · Rendimiento 91**. Sin compresión (http-server local) el rendimiento baja a ~85: el hosting debe servir gzip/brotli (Vercel y Netlify lo hacen solos).
@@ -74,6 +78,7 @@ Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo co
 - **Opiniones** (`#opiniones`): 6 opiniones **inventadas de ejemplo** (pedido de la usuaria; sustituir por reales), con las etiquetas de valoración de la app. Media y total se calculan solos. **Formulario «Deja tu opinión»** (estrellas, nombre, servicio, etiquetas, comentario): de momento la opinión solo se guarda en el navegador de quien la escribe (`localStorage`, clave `massolis-opiniones`) y sale marcada «pendiente de revisión». **Para recibirlas de verdad hace falta un servidor** (p. ej. Supabase o un servicio de formularios) o enlazarlas con las valoraciones de MASSolisapp.
 - Fotos de Unsplash enlazadas (provisionales): sustituir por fotos reales de MASSolis.
 - El correo `info@massolis.es` es de ejemplo, y no hay precios: confirmarlo con la empresa.
+- **Firma de autoría** (pedido de la usuaria, 8 nov 2026): última línea del pie de todas las páginas, `.firma`: «Web diseñada y desarrollada por Marian López Solís» (enlace a su portfolio https://marian-portfolio-mu.vercel.app/, `rel="author"`) · LinkedIn (https://www.linkedin.com/in/marian-lopez-solis-a15707389).
 
 ## Ver en local
 Configuración `massolis-web` en `Apps/carta-ar/.claude/launch.json` (http-server en el puerto 4180), o abrir `index.html` directamente.
