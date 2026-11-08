@@ -12,7 +12,7 @@ Primera versión hecha, pendiente de opinión de la usuaria.
 - `fonts/` — tipografías servidas desde la propia web (Plus Jakarta Sans variable 400–800 e Instrument Serif cursiva, solo juego latino). **No se usa Google Fonts** (privacidad: la IP no viaja a Google; y más rápido).
 - `logo.svg` — logo original de la empresa (copiado de `Escritorio\Group 3.svg`; no modificarlo). Color del logo `#0E0057`.
 - `docs/` — informes (auditoría WCAG).
-- `design-system.html` — guía viva del sistema de diseño (no indexada).
+- `design-system.html` — guía viva del sistema de diseño. **Solo de uso interno: no se publica** (está en `.gitignore`; decisión de la usuaria, 8 nov 2026). Verla en local: http://localhost:4180/design-system.html
 
 ## Privacidad y cookies (8 nov 2026)
 - **La web no usa cookies** (ni propias ni de terceros, ni analítica). Solo `localStorage` `massolis-opiniones` (la opinión que envía la propia persona), exento de consentimiento (art. 22.2 LSSI) → **no hay banner de cookies**, a propósito. Si algún día se añade analítica o publicidad, hará falta banner con consentimiento previo y actualizar `cookies.html`.
@@ -82,7 +82,7 @@ Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo co
 
 ## Publicada (8 nov 2026)
 - Repositorio **público**: https://github.com/frlmrn13-png/massolis-web (cuenta GitHub `frlmrn13-png`, rama `main`).
-- **Web en GitHub Pages: https://frlmrn13-png.github.io/massolis-web/** (se actualiza sola con cada push a `main`, en ~1 min). Guía: `…/design-system.html`.
+- **Web en GitHub Pages: https://frlmrn13-png.github.io/massolis-web/** (se actualiza sola con cada push a `main`, en ~1 min). La guía del sistema de diseño no se publica.
 - Es una vista previa: cuando haya dominio propio, configurarlo en Pages (o el hosting definitivo) y poner `canonical` y URLs absolutas.
 
 ## Ver en local

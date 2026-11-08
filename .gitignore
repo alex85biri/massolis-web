@@ -7,3 +7,6 @@ video-promo/renders/
 video-app/.media/
 video-promo/.media/
 **/.thumbnails/
+
+# Guía del sistema de diseño: solo uso interno, no se publica
+design-system.html
