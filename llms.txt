@@ -1,6 +1,6 @@
 # MASSolis · Solución sostenible
 
-> Empresa de limpieza y desinfección de hogares. Trabaja con un método propio paso a paso y productos ecológicos.
+> Empresa de limpieza y desinfección de hogares en Sevilla. Trabaja con un método propio paso a paso y productos ecológicos.
 
 ## Planes
 - Mantenimiento (01M): limpieza superficial periódica, de 2 a 3 horas según los metros.

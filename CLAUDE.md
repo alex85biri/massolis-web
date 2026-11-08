@@ -51,7 +51,7 @@ Lighthouse en móvil con compresión (como en hosting real): **SEO 100 · Accesi
 - **Datos estructurados (JSON-LD)**: `Organization` con su catálogo de servicios (los 6 planes), `WebSite`, `WebPage` y `FAQPage` (las 10 preguntas, sacadas del propio HTML: si se cambian en la web, regenerar el JSON-LD). **Sin `AggregateRating`**: las opiniones son de ejemplo y Google penaliza reseñas inventadas o de la propia empresa.
 - Estructura: un solo `<h1>`, `<main id="contenido">`, enlace «Saltar al contenido», nombres de planes como `<h3>`, texto alternativo en todas las fotos, `srcset` en las fotos de Unsplash.
 - `robots.txt` y `llms.txt` (resumen para buscadores con IA).
-- **Dominio: https://massolis.com/** (`CNAME`). Ya puestos: `canonical` en las cuatro páginas, `og:url`, imágenes y `@id` absolutos, `sitemap.xml` y la línea `Sitemap:` de `robots.txt`. Pendiente: zona de trabajo y teléfono, para pasar `Organization` a `LocalBusiness` y el SEO local.
+- **Dominio: https://massolis.com/** (`CNAME`). Ya puestos: `canonical` en las cuatro páginas, `og:url`, imágenes y `@id` absolutos, `sitemap.xml` y la línea `Sitemap:` de `robots.txt`. **Zona: Sevilla** (8 nov 2026, dada por la usuaria): en título, descripción, portada, «Sobre nosotros», pie, `llms.txt` y JSON-LD, que ya es `LocalBusiness` con `areaServed` Sevilla y dirección solo con localidad (sin calle: el domicilio es una vivienda). Pendiente: teléfono. **Google Search Console** dado de alta con adm@massolis.com (ver «Publicada»).
 
 ## Accesibilidad (WCAG 2.2 AA, 8 nov 2026)
 Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo comprobado (axe-core en 5 estados: 0 errores; Lighthouse accesibilidad 100; revisión manual: 9 problemas corregidos). Reglas para no romperlo:
