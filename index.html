@@ -8,21 +8,22 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="theme-color" content="#0E1F4D">
 <meta name="format-detection" content="telephone=no">
-<!-- Pendiente del dominio definitivo: <link rel="canonical" href="https://DOMINIO/"> y URLs absolutas en og:url / og:image -->
+<link rel="canonical" href="https://massolis.com/">
 <!-- Compartir en redes -->
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://massolis.com/">
 <meta property="og:site_name" content="MASSolis">
 <meta property="og:locale" content="es_ES">
 <meta property="og:title" content="MASSolis | Limpieza y desinfección de hogares sostenible">
 <meta property="og:description" content="Limpieza y desinfección de hogares con método propio y productos ecológicos. Planes de mantenimiento, Limpieza General y ozono. Presupuesto gratis.">
-<meta property="og:image" content="og-image.jpg">
+<meta property="og:image" content="https://massolis.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MASSolis, limpieza y desinfección de hogares: un salón limpio y luminoso">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MASSolis | Limpieza y desinfección de hogares sostenible">
 <meta name="twitter:description" content="Limpieza y desinfección de hogares con método propio y productos ecológicos. Planes de mantenimiento, Limpieza General y ozono. Presupuesto gratis.">
-<meta name="twitter:image" content="og-image.jpg">
+<meta name="twitter:image" content="https://massolis.com/og-image.jpg">
 <!-- Iconos -->
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
@@ -39,14 +40,15 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "#organizacion",
+      "@id": "https://massolis.com/#organizacion",
       "name": "MASSolis",
+      "url": "https://massolis.com/",
       "alternateName": "MASSolis · Solución sostenible",
       "slogan": "Solución sostenible",
       "description": "Empresa de limpieza y desinfección de hogares con un método propio paso a paso y productos ecológicos.",
-      "logo": "logo.svg",
-      "image": "og-image.jpg",
-      "email": "info@massolis.es",
+      "logo": "https://massolis.com/logo.svg",
+      "image": "https://massolis.com/og-image.jpg",
+      "email": "info@massolis.com",
       "knowsAbout": [
         "limpieza de hogares",
         "desinfección",
@@ -66,7 +68,7 @@
               "description": "Limpieza superficial periódica de 2 a 3 horas según los metros: muebles, superficies, baños desinfectados y suelo fregado.",
               "serviceType": "Limpieza de hogares",
               "provider": {
-                "@id": "#organizacion"
+                "@id": "https://massolis.com/#organizacion"
               }
             }
           },
@@ -78,7 +80,7 @@
               "description": "Limpieza algo más a fondo de 3 a 4 horas: movemos los muebles ligeros para limpiar debajo.",
               "serviceType": "Limpieza de hogares",
               "provider": {
-                "@id": "#organizacion"
+                "@id": "https://massolis.com/#organizacion"
               }
             }
           },
@@ -90,7 +92,7 @@
               "description": "Limpieza profunda de 4 a 5 horas con productos ecológicos y maquinaria propia: techos, paredes, interior de muebles y electrodomésticos.",
               "serviceType": "Limpieza de hogares",
               "provider": {
-                "@id": "#organizacion"
+                "@id": "https://massolis.com/#organizacion"
               }
             }
           },
@@ -102,7 +104,7 @@
               "description": "El plan más completo, de 5 a 6 horas: además, orden de ropa y objetos, colada y plancha.",
               "serviceType": "Limpieza de hogares",
               "provider": {
-                "@id": "#organizacion"
+                "@id": "https://massolis.com/#organizacion"
               }
             }
           },
@@ -114,7 +116,7 @@
               "description": "Limpieza a fondo para la primera vez o para una casa nueva antes de entrar a vivir. Incluye los planes MAS y MASS.",
               "serviceType": "Limpieza de hogares",
               "provider": {
-                "@id": "#organizacion"
+                "@id": "https://massolis.com/#organizacion"
               }
             }
           },
@@ -126,7 +128,7 @@
               "description": "Limpieza y desinfección por fricción con producto desinfectante o por pulverización de ozono.",
               "serviceType": "Limpieza de hogares",
               "provider": {
-                "@id": "#organizacion"
+                "@id": "https://massolis.com/#organizacion"
               }
             }
           }
@@ -135,30 +137,32 @@
     },
     {
       "@type": "WebSite",
-      "@id": "#web",
+      "@id": "https://massolis.com/#web",
       "name": "MASSolis",
+      "url": "https://massolis.com/",
       "inLanguage": "es-ES",
       "publisher": {
-        "@id": "#organizacion"
+        "@id": "https://massolis.com/#organizacion"
       }
     },
     {
       "@type": "WebPage",
-      "@id": "#pagina",
+      "@id": "https://massolis.com/#pagina",
+      "url": "https://massolis.com/",
       "name": "MASSolis | Limpieza y desinfección de hogares sostenible",
       "description": "Limpieza y desinfección de hogares con método propio y productos ecológicos. Planes de mantenimiento, Limpieza General y ozono. Presupuesto gratis.",
       "inLanguage": "es-ES",
       "isPartOf": {
-        "@id": "#web"
+        "@id": "https://massolis.com/#web"
       },
       "about": {
-        "@id": "#organizacion"
+        "@id": "https://massolis.com/#organizacion"
       },
-      "primaryImageOfPage": "og-image.jpg"
+      "primaryImageOfPage": "https://massolis.com/og-image.jpg"
     },
     {
       "@type": "FAQPage",
-      "@id": "#faq",
+      "@id": "https://massolis.com/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -1046,7 +1050,7 @@
         } finally { boton.disabled = false; }
       } else {
         const cuerpo = Object.entries(datos).map(([k, x]) => k + ': ' + x).join('\n');
-        location.href = 'mailto:info@massolis.es?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+        location.href = 'mailto:info@massolis.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
         msg.className = 'presu-msg'; msg.textContent = 'Se ha abierto tu correo con la solicitud lista para enviar.';
       }
     });

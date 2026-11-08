@@ -3,7 +3,7 @@
 Web de una sola página para **MASSolis — Solución sostenible**, empresa de limpieza y desinfección. HTML + CSS sin framework, en español.
 
 ## Estado (8 nov 2026)
-Primera versión publicada en GitHub Pages (ver «Publicada»).
+Publicada en **https://massolis.com/** desde el repositorio `alex85biri/massolis-web` (ver «Publicada»). El repositorio original de Marian (`frlmrn13-png/massolis-web`) ya no es el que se ve.
 
 ## ⚠ MASSolisapp OCULTA hasta su lanzamiento (decisión de la usuaria, 8 nov 2026)
 La app «se lanzará próximamente»: **no debe aparecer nada de ella en la web pública** hasta que la usuaria diga que se puede.
@@ -25,7 +25,8 @@ La app «se lanzará próximamente»: **no debe aparecer nada de ella en la web 
 - **La web no usa cookies** (ni propias ni de terceros, ni analítica). Solo `localStorage` `massolis-opiniones` (la opinión que envía la propia persona), exento de consentimiento (art. 22.2 LSSI) → **no hay banner de cookies**, a propósito. Si algún día se añade analítica o publicidad, hará falta banner con consentimiento previo y actualizar `cookies.html`.
 - Externos: solo las fotos provisionales de Unsplash (comprobado: no ponen cookies) y FormSubmit cuando se active el envío. Al quitar Unsplash, borrar ese punto de las dos políticas.
 - Consentimiento: casilla obligatoria en presupuesto y en opiniones (esta autoriza publicar la opinión con el nombre escrito), ambas con enlace a `privacidad.html`.
-- **Pendiente (resaltado en amarillo en las páginas, clase `.pendiente`)**: razón social, NIF/CIF, dirección, correo real, proveedor de hosting y proveedor de envío de formularios (con sus garantías si está fuera del EEE). **Aviso legal** (`aviso-legal.html`, LSSI art. 10) hecho: titular, objeto, condiciones de uso, propiedad intelectual, responsabilidad, opiniones, datos y ley aplicable; sus datos del titular (incl. datos registrales si es sociedad y teléfono opcional) también están pendientes. Las políticas son una base redactada según RGPD/LOPDGDD/LSSI: conviene revisión profesional antes de publicar.
+- **Datos del titular (8 nov 2026, confirmados por la empresa):** María Andrea Solís Díaz (autónoma, nombre comercial MASSolis), NIF 29546822-X, Calle Rico Cejudo, 8, 2.º D, 41005 Sevilla; correo info@massolis.com; alojamiento GitHub Pages. Sin teléfono ni datos registrales (no es sociedad).
+- **Pendiente (resaltado en amarillo en las páginas, clase `.pendiente`)**: proveedor de envío de formularios (con sus garantías si está fuera del EEE). **Aviso legal** (`aviso-legal.html`, LSSI art. 10) hecho: titular, objeto, condiciones de uso, propiedad intelectual, responsabilidad, opiniones, datos y ley aplicable; sus datos del titular (incl. datos registrales si es sociedad y teléfono opcional) también están pendientes. Las políticas son una base redactada según RGPD/LOPDGDD/LSSI: conviene revisión profesional antes de publicar.
 
 ## Sistema de diseño (unificado el 8 nov 2026, pedido de la usuaria)
 **Una sola fuente: `estilos.css`**, organizado en capas de cascada `@layer tokens, base, layout, atoms, molecules, organisms, sections, pages, utilities, responsive` (cada capa solo sobrescribe a las anteriores; los tokens están en `:root` dentro de `@layer tokens`). **Guía visual en vivo: `design-system.html`** (`noindex`): lee los tokens del propio CSS y enseña colores con su contraste, tipografía, espacios, radios, sombras, capas, movimiento, primitivas de layout, átomos, moléculas, organismos y reglas de uso. Si se añade un componente, añadirlo también a la guía. Regla: el resto del CSS solo usa `var(--…)`; no se escriben colores, radios, sombras ni tamaños sueltos. Si falta algo, se añade como token.
@@ -49,7 +50,7 @@ Lighthouse en móvil con compresión (como en hosting real): **SEO 100 · Accesi
 - **Datos estructurados (JSON-LD)**: `Organization` con su catálogo de servicios (los 6 planes), `WebSite`, `WebPage` y `FAQPage` (las 10 preguntas, sacadas del propio HTML: si se cambian en la web, regenerar el JSON-LD). **Sin `AggregateRating`**: las opiniones son de ejemplo y Google penaliza reseñas inventadas o de la propia empresa.
 - Estructura: un solo `<h1>`, `<main id="contenido">`, enlace «Saltar al contenido», nombres de planes como `<h3>`, texto alternativo en todas las fotos, `srcset` en las fotos de Unsplash.
 - `robots.txt` y `llms.txt` (resumen para buscadores con IA).
-- **Pendiente de datos de la empresa**: dominio definitivo (para `canonical`, URLs absolutas en `og:url`/`og:image`, `sitemap.xml` y la línea `Sitemap:` de `robots.txt`); ciudad o zona de trabajo, teléfono y dirección (para pasar `Organization` a `LocalBusiness` y para el SEO local); correo real.
+- **Dominio: https://massolis.com/** (`CNAME`). Ya puestos: `canonical` en las cuatro páginas, `og:url`, imágenes y `@id` absolutos, `sitemap.xml` y la línea `Sitemap:` de `robots.txt`. Pendiente: zona de trabajo y teléfono, para pasar `Organization` a `LocalBusiness` y el SEO local.
 
 ## Accesibilidad (WCAG 2.2 AA, 8 nov 2026)
 Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo comprobado (axe-core en 5 estados: 0 errores; Lighthouse accesibilidad 100; revisión manual: 9 problemas corregidos). Reglas para no romperlo:
@@ -61,7 +62,7 @@ Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo co
 
 ## Formulario de presupuesto (`#contacto`)
 **Se abre en una ventana emergente** (`<dialog id="presu-dialogo">`, fuera de `<main>`) solo al pulsar un botón de presupuesto: cualquier enlace a `#contacto` o con `data-abrir-presu` (cabecera, «Reserva una limpieza», planes, «Escríbenos»…). En la página queda un bloque corto: «¿Hablamos de tu espacio?» con los tres pasos y el botón «Pedir presupuesto» (la usuaria no quería el formulario a la vista de buenas a primeras). Se cierra con la X, Escape o pulsando fuera; en móvil ocupa toda la pantalla. **El formulario de opiniones funciona igual** (`<dialog id="op-dialogo">`, se abre con «Dejar mi opinión», `data-abrir-opinion`). Planes con su **código visible** (01M, 02MA, 03MAS, 04MASS, LG, Desinfección, «Aún no lo sé»), tipo de vivienda (con «Aún no lo sé»), metros, frecuencia, extras, nombre, teléfono o correo (al menos uno), localidad, mensaje y casilla de privacidad. Los botones de cada plan (`data-plan`) dejan ese plan marcado.
-- Envío: constante `CORREO_PRESUPUESTOS` al principio del bloque «Presupuesto» del script. **Vacía** → abre el programa de correo del visitante con la solicitud rellenada (a `info@massolis.es`, de ejemplo). **Con un correo** → envía por FormSubmit (`formsubmit.co/ajax/…`, gratis, sin cuenta; la primera solicitud manda a ese correo un enlace de activación que hay que pulsar una vez).
+- Envío: constante `CORREO_PRESUPUESTOS` al principio del bloque «Presupuesto» del script. **Vacía** → abre el programa de correo del visitante con la solicitud rellenada (a `info@massolis.com`). **Con un correo** → envía por FormSubmit (`formsubmit.co/ajax/…`, gratis, sin cuenta; la primera solicitud manda a ese correo un enlace de activación que hay que pulsar una vez).
 
 ## Decisiones
 - Color principal **azul marino** con acento azul y fondo blanco; letra Plus Jakarta Sans y palabras destacadas en cursiva Instrument Serif (`<em>`). Valores exactos en el sistema de diseño de arriba.
@@ -84,13 +85,13 @@ Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo co
 - **Preguntas frecuentes** (`#faq`): 10 preguntas concretas sacadas del manual y de la app (duración por plan, colada y plancha, fricción u ozono, patio y plantas, materiales delicados, ordenar tus cosas, tareas periódicas, ver quién viene, cambiar hora o día, cómo saber que está bien hecho), con filtro por tema (Servicios · Tu casa · App) y columna fija «¿No encuentras tu pregunta?». La usuaria rechazó la versión anterior por genérica.
 - **Opiniones** (`#opiniones`): 6 opiniones **inventadas de ejemplo** (pedido de la usuaria; sustituir por reales), con las etiquetas de valoración de la app. Media y total se calculan solos. **Formulario «Deja tu opinión»** (estrellas, nombre, servicio, etiquetas, comentario): de momento la opinión solo se guarda en el navegador de quien la escribe (`localStorage`, clave `massolis-opiniones`) y sale marcada «pendiente de revisión». **Para recibirlas de verdad hace falta un servidor** (p. ej. Supabase o un servicio de formularios) o enlazarlas con las valoraciones de MASSolisapp.
 - Fotos de Unsplash enlazadas (provisionales): sustituir por fotos reales de MASSolis.
-- El correo `info@massolis.es` es de ejemplo, y no hay precios: confirmarlo con la empresa.
+- Correo de contacto: `info@massolis.com`. No hay precios: confirmarlo con la empresa.
 - **Firma de autoría** (pedido de la usuaria, 8 nov 2026): última línea del pie de todas las páginas, `.firma`: «Web diseñada y desarrollada por Marian López Solís» (enlace a su portfolio https://marian-portfolio-mu.vercel.app/, `rel="author"`) · LinkedIn (https://www.linkedin.com/in/marian-lopez-solis-a15707389).
 
 ## Publicada (8 nov 2026)
-- Repositorio **público**: https://github.com/frlmrn13-png/massolis-web (cuenta GitHub `frlmrn13-png`, rama `main`).
-- **Web en GitHub Pages: https://frlmrn13-png.github.io/massolis-web/** (se actualiza sola con cada push a `main`, en ~1 min). La guía del sistema de diseño no se publica.
-- Es una vista previa: cuando haya dominio propio, configurarlo en Pages (o el hosting definitivo) y poner `canonical` y URLs absolutas.
+- Repositorio **público**: https://github.com/alex85biri/massolis-web (rama `main`). Copia del original de Marian (`frlmrn13-png/massolis-web`), con su historial.
+- **Web: https://massolis.com/** en GitHub Pages, con HTTPS. `www.massolis.com` lleva a ella. Se actualiza sola con cada push a `main` (~1 min). La guía del sistema de diseño no se publica.
+- DNS en Hostinger (los gestiona la titular): `massolis.com` con los cuatro registros A de GitHub Pages (185.199.108-111.153) y `www` como CNAME a `alex85biri.github.io`. No tocar los registros del correo (Google Workspace) ni los de `correo.massolis.com` (Brevo).
 
 ## Ver en local
 Configuración `massolis-web` en `Apps/carta-ar/.claude/launch.json` (http-server en el puerto 4180), o abrir `index.html` directamente.
