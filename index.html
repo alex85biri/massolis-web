@@ -644,7 +644,7 @@
       <button type="button" class="btn-icon btn-icon--on-dark dlg-cerrar dlg-cerrar-oscuro" data-cerrar-opinion aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       <div class="side">
         <h3 id="op-dlg-t">¿Ya eres cliente? <em>Cuéntanos qué tal</em></h3>
-        <p>Tu opinión nos ayuda a mejorar y a que otras personas nos conozcan. La revisamos antes de publicarla.</p>
+        <p>Tu opinión nos ayuda a mejorar y a que otras personas nos conozcan. La revisamos antes de publicarla y te pedimos tu correo solo para comprobar que eres cliente: no se publica.</p>
       </div>
       <form class="op-form" id="op-form" novalidate>
         <fieldset class="full">
@@ -656,6 +656,10 @@
           <input class="field field--on-dark" type="text" id="op-nombre" name="nombre" maxlength="40" autocomplete="given-name" placeholder="Ej.: Laura G." required>
         </div>
         <div>
+          <label for="op-email">Tu correo (no se publica)</label>
+          <input class="field field--on-dark" type="email" id="op-email" name="email" maxlength="160" autocomplete="email" inputmode="email" placeholder="El que nos diste al contratar" required>
+        </div>
+        <div class="full">
           <label for="op-plan">Servicio contratado</label>
           <select class="field field--on-dark" id="op-plan" name="plan">
             <option value="">Prefiero no decirlo</option>
@@ -675,7 +679,7 @@
           <label for="op-texto">Tu comentario</label>
           <textarea class="field field--on-dark" id="op-texto" name="texto" maxlength="400" placeholder="Cuéntanos qué te ha gustado o qué podemos mejorar." required></textarea>
         </div>
-        <label class="check check--on-dark consent full"><input type="checkbox" name="consentimiento" required> <span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto que MASSolis publique mi opinión con el nombre que he escrito.</span></label>
+        <label class="check check--on-dark consent full"><input type="checkbox" name="consentimiento" required> <span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto que MASSolis use mi correo para comprobar que soy cliente y publique mi opinión con el nombre que he escrito.</span></label>
         <button class="btn btn-light" type="submit">Enviar opinión <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></button>
         <p class="op-msg" id="op-msg" role="status"></p>
       </form>
@@ -832,7 +836,11 @@
       nota.textContent = b.dataset.nota;
     });
   });
-  // Opiniones: media, total y formulario (las nuevas se guardan solo en este navegador)
+  // Servicio que envía las solicitudes de presupuesto y las opiniones nuevas a adm@massolis.com: Google Apps Script en la cuenta adm@massolis.com
+  // (código en _servicio-presupuesto/Codigo.gs). Si fallara, se ofrece escribir directamente a adm@massolis.com.
+  const ENVIO_PRESUPUESTOS = 'https://script.google.com/macros/s/AKfycbwiZe72M6XBN9bN_XOy8Alh6etMBYKDu5Sxz1XNWWkeIf62L0nBWdMdjhQ2XWaYp-hsJg/exec';
+  // Opiniones: media, total y formulario. Cada opinión nueva se envía a adm@massolis.com con el correo de quien la escribe,
+  // para comprobar que es cliente antes de publicarla; en este navegador se ve como «pendiente de revisión».
   const grid = document.getElementById('op-grid');
   const form = document.getElementById('op-form');
   if (grid && form) {
@@ -898,9 +906,12 @@
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => { if (!pausa && !pausadoPorPersona && !document.hidden) ir(actual() + 1); }, 7000);
 
     const msg = document.getElementById('op-msg');
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const d = new FormData(form);
+      const email = (d.get('email') || '').trim();
+      const campoEmail = form.querySelector('#op-email');
+      campoEmail.classList.remove('invalido'); campoEmail.removeAttribute('aria-invalid');
       const o = {
         estrellas: +d.get('estrellas') || 0,
         nombre: (d.get('nombre') || '').trim(),
@@ -910,9 +921,29 @@
       };
       const consent = form.querySelector('.consent');
       consent.classList.remove('invalido');
-      const falta = !o.estrellas ? 'Elige de 1 a 5 estrellas.' : !o.nombre ? 'Escribe tu nombre.' : o.texto.length < 10 ? 'Cuéntanos un poco más (mínimo 10 caracteres).' : !d.get('consentimiento') ? 'Acepta la política de privacidad para publicar tu opinión.' : '';
-      if (falta && !d.get('consentimiento') && o.estrellas && o.nombre && o.texto.length >= 10) consent.classList.add('invalido');
+      const correoMal = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      const falta = !o.estrellas ? 'Elige de 1 a 5 estrellas.' : !o.nombre ? 'Escribe tu nombre.' : correoMal ? 'Escribe tu correo: lo usamos solo para comprobar que eres cliente.' : o.texto.length < 10 ? 'Cuéntanos un poco más (mínimo 10 caracteres).' : !d.get('consentimiento') ? 'Acepta la política de privacidad para publicar tu opinión.' : '';
+      if (falta && !d.get('consentimiento') && o.estrellas && o.nombre && !correoMal && o.texto.length >= 10) consent.classList.add('invalido');
+      if (falta && correoMal && o.estrellas && o.nombre) { campoEmail.classList.add('invalido'); campoEmail.setAttribute('aria-invalid', 'true'); campoEmail.setAttribute('aria-describedby', 'op-msg'); campoEmail.focus(); }
       if (falta) { msg.textContent = falta; msg.classList.add('err'); return; }
+      // Se envía a adm@massolis.com para revisarla (mismo servicio que el presupuesto)
+      const boton = form.querySelector('button[type="submit"]');
+      boton.disabled = true; msg.classList.remove('err'); msg.textContent = 'Enviando…';
+      try {
+        const r = await fetch(ENVIO_PRESUPUESTOS, {
+          method: 'POST',
+          body: JSON.stringify({ tipo: 'opinion', estrellas: o.estrellas, nombre: o.nombre, email: email, plan: o.plan,
+            etiquetas: o.etiquetas, texto: o.texto, privacidad: !!d.get('consentimiento'), web: (d.get('web') || '').toString() })
+        });
+        const res = await r.json();
+        if (!r.ok || !res.ok) throw new Error(res.error || r.status);
+      } catch (err) {
+        msg.classList.add('err');
+        msg.textContent = 'No se ha podido enviar tu opinión. Inténtalo de nuevo en unos minutos.';
+        boton.disabled = false;
+        return;
+      }
+      boton.disabled = false;
       grid.prepend(tarjeta(o));
       quitaEjemplo();
       pintaPuntos();
@@ -990,9 +1021,6 @@
     (window.requestIdleCallback || setTimeout)(pintaP);
   }
   // ---------- Presupuesto ----------
-  // Servicio que envía la solicitud por correo a adm@massolis.com: Google Apps Script en la cuenta adm@massolis.com
-  // (código en _servicio-presupuesto/Codigo.gs). Si fallara, se ofrece escribir directamente a adm@massolis.com.
-  const ENVIO_PRESUPUESTOS = 'https://script.google.com/macros/s/AKfycbwiZe72M6XBN9bN_XOy8Alh6etMBYKDu5Sxz1XNWWkeIf62L0nBWdMdjhQ2XWaYp-hsJg/exec';
   const presu = document.getElementById('presu-form');
   if (presu) {
     // Ventana emergente: se abre con cualquier botón de presupuesto (y deja marcado el plan si viene de uno)
