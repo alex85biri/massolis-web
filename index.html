@@ -1050,7 +1050,7 @@
         } finally { boton.disabled = false; }
       } else {
         const cuerpo = Object.entries(datos).map(([k, x]) => k + ': ' + x).join('\n');
-        location.href = 'mailto:info@massolis.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+        location.href = 'mailto:adm@massolis.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
         msg.className = 'presu-msg'; msg.textContent = 'Se ha abierto tu correo con la solicitud lista para enviar.';
       }
     });
