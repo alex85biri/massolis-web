@@ -215,30 +215,6 @@
             "@type": "Answer",
             "text": "Además de lo de cada visita, limpiamos la nevera por dentro una vez al mes, y cada seis meses hidratamos las cortinas y desinfectamos los colchones."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Puedo saber quién viene y a qué hora llega?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí. En el portal de clientes de MASSolisapp ves quién está en tu casa, a qué hora ha llegado y cuántas tareas lleva, en directo."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Y si necesito cambiar la hora o el día?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Lo pides desde el portal: otra hora, otro día, añadir instrucciones o cancelar. La oficina lo revisa y te confirma el cambio."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo sé que el trabajo está bien hecho?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "En cada servicio hacemos fotos del antes y el después, y puedes verlas en el portal. La oficina revisa cada servicio antes de cerrarlo, y tú puedes valorarlo al terminar."
-          }
         }
       ]
     }
@@ -271,7 +247,6 @@
       <nav class="nav" aria-label="Principal">
         <a href="#servicios">Planes</a>
         <a href="#metodo">Método</a>
-        <a href="#app">App</a>
         <a href="#opiniones">Opiniones</a>
         <a href="#nosotros">Sobre nosotros</a>
         <a href="#faq">Preguntas</a>
@@ -509,33 +484,6 @@
     </div>
   </section>
 
-  <!-- MASSolisapp: portal de clientes (prototipo real incrustado) -->
-  <section class="app" id="app">
-    <div>
-      <p class="kicker">MASSolisapp</p>
-      <h2>Tu limpieza, <em>en tu móvil</em></h2>
-      <p class="intro">Con el portal de clientes de MASSolisapp sigues cada servicio en directo, sin llamadas ni mensajes sueltos. Tu espacio, siempre cuidado.</p>
-      <div class="app-feats">
-        <div class="feat"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Tu servicio, hoy</b><span>Quién está en tu casa, a qué hora y cuántas tareas lleva.</span></div></div>
-        <div class="feat"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg></span><div><b>Fotos del antes y después</b><span>Sigue el servicio paso a paso, con las fotos.</span></div></div>
-        <div class="feat"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m16 15 2 2 4-4"/></svg></span><div><b>Pide un cambio</b><span>Otra hora, otro día, instrucciones o cancelar.</span></div></div>
-        <div class="feat"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span><div><b>Valora cada visita</b><span>Estrellas, etiquetas y un comentario al terminar.</span></div></div>
-        <div class="feat"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><div><b>Tus servicios</b><span>Los próximos y los anteriores, con su estado.</span></div></div>
-        <div class="feat"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><div><b>Mensajes</b><span>Habla con atención al cliente sin salir del portal.</span></div></div>
-      </div>
-      <div class="app-cta">
-        <a class="btn" href="#contacto">Quiero mi acceso <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
-        <small>Al contratar, tu gestor de MASSolis te da acceso al portal.</small>
-      </div>
-    </div>
-    <div class="phone-wrap">
-      <div class="phone">
-        <div class="screen"><div class="sb" aria-hidden="true"><span>10:24</span><svg width="62" height="12" viewBox="0 0 62 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="#0a1638"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#0a1638"/><rect x="10" y="2" width="3" height="10" rx="1" fill="#0a1638"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#0a1638"/><rect x="36" y="1" width="22" height="10" rx="3" fill="none" stroke="#0a1638" opacity=".5"/><rect x="38" y="3" width="16" height="6" rx="1.5" fill="#0a1638"/></svg></div><img src="media/portal-inicio.png" width="390" height="800" alt="Portal de clientes de MASSolisapp: el servicio de hoy, de 10:00 a 13:00, con María en tu espacio desde las 09:58 y 8 de 10 tareas completadas" loading="lazy"></div>
-      </div>
-      <div class="phone-tag"><b>Tu servicio, hoy</b>Quién está en tu casa y cuánto le falta.</div>
-    </div>
-  </section>
-
   <!-- Sobre nosotros -->
   <section class="about on-dark" id="nosotros">
     <div style="position:relative;z-index:1">
@@ -579,7 +527,7 @@
       </article>
       <article class="op" data-ejemplo data-rating="5">
         <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★<span class="off"></span></span>
-        <q>Siempre puntuales. Desde la app veo quién viene y a qué hora, y si necesito cambiar el día lo pido en un minuto.</q>
+        <q>Siempre puntuales. Me avisan de quién viene y a qué hora, y si necesito cambiar el día lo arreglan enseguida.</q>
         <div class="op-tags"><span>Puntualidad</span><span>Buena comunicación</span></div>
         <div class="op-who"><span class="av" aria-hidden="true">CG</span><div><b>Carmen G.</b><small>02MA · Mantenimiento Amplio</small></div></div>
       </article>
@@ -622,7 +570,7 @@
       <div class="faq-side">
         <p class="kicker">Preguntas frecuentes</p>
         <h2>Lo que quieres <em>saber</em></h2>
-        <p class="intro">Cuánto dura, cómo cuidamos tu casa y cómo sigues cada servicio desde el móvil.</p>
+        <p class="intro">Cuánto dura cada servicio, qué incluye y cómo cuidamos tu casa.</p>
         <div class="faq-help">
           <b>¿No encuentras tu pregunta?</b>
           <p>Escríbenos y te respondemos sin compromiso.</p>
@@ -634,7 +582,6 @@
           <button type="button" class="chip-btn" aria-pressed="true" data-cat="todas">Todas</button>
           <button type="button" class="chip-btn" aria-pressed="false" data-cat="servicios">Servicios</button>
           <button type="button" class="chip-btn" aria-pressed="false" data-cat="casa">Tu casa</button>
-          <button type="button" class="chip-btn" aria-pressed="false" data-cat="app">App</button>
         </div>
         <div class="faq">
         <details data-cat="servicios"><summary><span class="q"><span class="cat">Servicios</span>¿Cuánto dura cada servicio?</span></summary><p>Depende del plan y de los metros de tu casa: <b>M</b>, de 2 a 3 horas; <b>MA</b>, de 3 a 4; <b>MAS</b>, de 4 a 5; y <b>MASS</b>, de 5 a 6. La Limpieza General es la más larga, porque incluye MAS y MASS.</p></details>
@@ -644,9 +591,6 @@
         <details data-cat="casa"><summary><span class="q"><span class="cat">Tu casa</span>¿Cuidáis los materiales delicados?</span></summary><p>Cada material tiene su procedimiento: la <b>madera</b>, casi sin agua y sin productos agresivos; la <b>piedra</b> y el <b>metacrilato</b>, con productos suaves y paños que no rayan; los <b>tapizados</b>, según su tejido. Y siempre secamos bien para que no queden marcas ni humedad.</p></details>
         <details data-cat="casa"><summary><span class="q"><span class="cat">Tu casa</span>¿Vais a cambiar mis cosas de sitio?</span></summary><p>Solo lo que tú quieras. Dejamos la organización que nos indiques. En el plan MASS ordenamos la ropa por tipo, color y temporada con el método Marie Kondo, siempre a tu gusto.</p></details>
         <details data-cat="casa"><summary><span class="q"><span class="cat">Tu casa</span>¿Qué tareas se hacen cada cierto tiempo?</span></summary><p>Además de lo de cada visita, limpiamos la nevera por dentro una vez al mes, y cada seis meses hidratamos las cortinas y desinfectamos los colchones.</p></details>
-        <details data-cat="app"><summary><span class="q"><span class="cat">App</span>¿Puedo saber quién viene y a qué hora llega?</span></summary><p>Sí. En el <a href="#app">portal de clientes de MASSolisapp</a> ves quién está en tu casa, a qué hora ha llegado y cuántas tareas lleva, en directo.</p></details>
-        <details data-cat="app"><summary><span class="q"><span class="cat">App</span>¿Y si necesito cambiar la hora o el día?</span></summary><p>Lo pides desde el portal: otra hora, otro día, añadir instrucciones o cancelar. La oficina lo revisa y te confirma el cambio.</p></details>
-        <details data-cat="app"><summary><span class="q"><span class="cat">App</span>¿Cómo sé que el trabajo está bien hecho?</span></summary><p>En cada servicio hacemos fotos del antes y el después, y puedes verlas en el portal. La oficina revisa cada servicio antes de cerrarlo, y tú puedes valorarlo al terminar.</p></details>
         </div>
       </div>
     </div>
@@ -697,7 +641,6 @@
       <div class="side">
         <h3 id="op-dlg-t">¿Ya eres cliente? <em>Cuéntanos qué tal</em></h3>
         <p>Tu opinión nos ayuda a mejorar y a que otras personas nos conozcan. La revisamos antes de publicarla.</p>
-        <p>Si usas MASSolisapp, también puedes valorar cada servicio al terminar, desde el <a href="#app">portal de clientes</a>.</p>
       </div>
       <form class="op-form" id="op-form" novalidate>
         <fieldset class="full">

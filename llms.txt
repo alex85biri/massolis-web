@@ -1,6 +1,6 @@
 # MASSolis · Solución sostenible
 
-> Empresa de limpieza y desinfección de hogares. Trabaja con un método propio paso a paso, productos ecológicos y un portal de clientes (MASSolisapp) para seguir cada servicio desde el móvil.
+> Empresa de limpieza y desinfección de hogares. Trabaja con un método propio paso a paso y productos ecológicos.
 
 ## Planes
 - Mantenimiento (01M): limpieza superficial periódica, de 2 a 3 horas según los metros.
@@ -16,9 +16,6 @@
 2. Primero, la zona que más lo necesita.
 3. De arriba abajo y de dentro a fuera.
 4. Todo en su sitio, a gusto del cliente.
-
-## Portal de clientes (MASSolisapp)
-Ver quién está en casa y a qué hora llegó, seguir el servicio con fotos del antes y el después, pedir cambios de hora o día, valorar cada visita y hablar con atención al cliente.
 
 ## Contacto
 - Correo: info@massolis.es
