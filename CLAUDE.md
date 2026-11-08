@@ -93,6 +93,7 @@ Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo co
 ## Publicada (8 nov 2026)
 - Repositorio **público**: https://github.com/alex85biri/massolis-web (rama `main`). Copia del original de Marian (`frlmrn13-png/massolis-web`), con su historial.
 - **Web: https://massolis.com/** en GitHub Pages, con HTTPS. `www.massolis.com` lleva a ella. Se actualiza sola con cada push a `main` (~1 min). La guía del sistema de diseño no se publica.
+- **Google Search Console** (8 nov 2026): propiedad de dominio `massolis.com`, en la cuenta adm@massolis.com, verificada automáticamente con el registro TXT `google-site-verification` que ya tenía el dominio (no borrarlo). Mapa del sitio enviado (`https://massolis.com/sitemap.xml`) e indexación de la portada solicitada. Las palabras por las que aparece la web están en *Rendimiento → Resultados de búsqueda → Consultas* (los datos tardan unos días).
 - DNS en Hostinger (los gestiona la titular): `massolis.com` con los cuatro registros A de GitHub Pages (185.199.108-111.153) y `www` como CNAME a `alex85biri.github.io`. No tocar los registros del correo (Google Workspace) ni los de `correo.massolis.com` (Brevo).
 
 ## Ver en local
