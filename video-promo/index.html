@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; src: url("assets/fonts/InstrumentSerif-Italic.ttf"); }
+      :root {
+        --hielo: #f4f7fc;
+        --navy: #0e1f4d;
+        --navy-deep: #0a1638;
+        --gris: #4a5578;
+        --acento: #3b6fd8;
+        --font-display: "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--hielo); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: var(--font-display); color: var(--navy); }
+
+      /* El mundo: el salón limpio, con la luz del día */
+      #mundo { position: absolute; inset: 0; }
+      #mundo img { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; object-position: 60% 50%; }
+      #mundo .tono { position: absolute; inset: 0; background: #bfd3ff; opacity: .16; }
+      #mundo .velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(244,247,252,.97) 0, rgba(244,247,252,.94) 640px, rgba(244,247,252,.55) 960px, rgba(244,247,252,0) 1150px); }
+
+      /* La hora */
+      .hora { position: absolute; left: 130px; top: 280px; width: 900px; height: 200px; overflow: hidden; }
+      .hora .in { position: absolute; left: 0; top: 0; font-size: 230px; font-weight: 900; letter-spacing: -0.04em; line-height: 200px; color: var(--navy-deep); }
+      /* Frases */
+      .frase { position: absolute; left: 136px; top: 540px; width: 860px; }
+      .frase .in b { display: block; font-size: 64px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; color: var(--navy-deep); }
+      .frase .in b em { font-style: normal; color: var(--acento); }
+      .frase .in span { display: block; margin-top: 18px; font-size: 34px; font-weight: 400; color: var(--gris); }
+
+      /* El móvil */
+      #movil { position: absolute; left: 1240px; top: 96px; width: 430px; height: 888px; border-radius: 64px; background: #0b1430;
+        box-shadow: 0 40px 80px rgba(14,31,77,.35), inset 0 0 0 3px #26345e; }
+      #movil::before { content: ""; position: absolute; left: 50%; top: 22px; width: 110px; height: 28px; margin-left: -55px; border-radius: 20px; background: #0b1430; z-index: 5; }
+      .pantalla { position: absolute; left: 1256px; top: 152px; width: 398px; height: 816px; overflow: hidden; border-radius: 0 0 50px 50px; }
+      .pantalla .in { position: absolute; inset: 0; box-shadow: -20px 0 40px rgba(10,22,56,.18); }
+      .pantalla img { display: block; width: 398px; height: 816px; }
+      #estado { z-index: 6; position: absolute; left: 1256px; top: 112px; width: 398px; height: 40px; border-radius: 50px 50px 0 0; background: #7abdf3;
+        display: flex; align-items: center; justify-content: space-between; padding: 6px 34px 0 40px; font-size: 16px; font-weight: 700; color: var(--navy-deep); }
+
+      /* Piezas de la app ampliadas */
+      .pieza { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; }
+      .pieza .pz { position: absolute; overflow: hidden; border-radius: 14px; transform-origin: 50% 50%; box-shadow: 0 30px 60px rgba(14,31,77,0); }
+      .pieza .pz img { position: absolute; width: 398px; height: 816px; }
+
+      /* Cierre */
+      #cierre { position: absolute; inset: 0; }
+      #cierre .velo { position: absolute; inset: 0; background: var(--hielo); }
+      #cierre .marca { position: absolute; left: 0; right: 0; top: 230px; text-align: center; }
+      #cierre svg { width: 560px; height: auto; overflow: visible; }
+      #cierre .nombre { margin-top: 26px; font-size: 104px; font-weight: 900; letter-spacing: -0.04em; color: var(--navy-deep); }
+      #cierre .nombre span { color: var(--acento); }
+      #cierre .claim { margin-top: 6px; font-size: 44px; font-weight: 400; color: var(--gris); }
+      #cierre .claim em { font-family: "Instrument Serif", serif; font-style: italic; font-size: 60px; color: var(--acento); }
+      #cierre .cta { display: inline-block; margin-top: 40px; padding: 24px 46px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 32px; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="27.2" data-width="1920" data-height="1080">
+
+      <div id="mundo" class="clip" data-start="0" data-duration="27.2" data-track-index="0">
+        <img src="assets/fotos/salon.jpg" alt="" />
+        <div class="tono"></div>
+        <div class="velo"></div>
+      </div>
+
+      <!-- La hora que avanza -->
+      <div id="h1" class="hora clip" data-layout-allow-overlap data-start="0" data-duration="6.6" data-track-index="1"><div class="in">09:58</div></div>
+      <div id="h2" class="hora clip" data-layout-allow-overlap data-start="6" data-duration="6.1" data-track-index="2"><div class="in">11:30</div></div>
+      <div id="h3" class="hora clip" data-layout-allow-overlap data-start="11.5" data-duration="5.6" data-track-index="1"><div class="in">13:00</div></div>
+      <div id="h4" class="hora clip" data-layout-allow-overlap data-start="16.5" data-duration="5.2" data-track-index="2"><div class="in">13:05</div></div>
+
+      <!-- Frases -->
+      <div id="f1" class="frase clip" data-start="0" data-duration="5.95" data-track-index="3"><div class="in"><b>María <em>llega</em> a tu casa.</b><span>Y tú lo ves al momento.</span></div></div>
+      <div id="f2" class="frase clip" data-start="6.1" data-duration="5.35" data-track-index="3"><div class="in"><b>Ya lleva <em>8 de 10</em> tareas.</b><span>Sigues el servicio en directo.</span></div></div>
+      <div id="f3" class="frase clip" data-start="11.6" data-duration="4.85" data-track-index="3"><div class="in"><b>Te llegan <em>las fotos</em>.</b><span>El antes y el después, en tu móvil.</span></div></div>
+      <div id="f4" class="frase clip" data-start="16.6" data-duration="4.85" data-track-index="3"><div class="in"><b>Y lo <em>valoras</em> en 10 segundos.</b><span>Cinco estrellas, un comentario y listo.</span></div></div>
+
+      <!-- El móvil con el portal real -->
+      <div id="movil" class="clip" data-start="0" data-duration="22.2" data-track-index="4"></div>
+      <div id="estado" class="clip" data-start="0" data-duration="22.2" data-track-index="5" data-layout-ignore><span data-layout-ignore>10:24</span><span data-layout-ignore><svg width="70" height="14" viewBox="0 0 70 14"><rect x="0" y="9" width="4" height="5" rx="1" fill="#0a1638"/><rect x="6" y="6" width="4" height="8" rx="1" fill="#0a1638"/><rect x="12" y="3" width="4" height="11" rx="1" fill="#0a1638"/><rect x="18" y="0" width="4" height="14" rx="1" fill="#0a1638"/><rect x="40" y="1" width="26" height="12" rx="3.5" fill="none" stroke="#0a1638" opacity=".5"/><rect x="42" y="3" width="19" height="8" rx="2" fill="#0a1638"/></svg></span></div>
+      <div id="s-inicio" class="pantalla clip" data-start="0" data-duration="6.7" data-track-index="6"><div class="in"><img src="assets/pantallas/01-inicio.png" alt="" /></div></div>
+      <div id="s-seguimiento" class="pantalla clip" data-start="6.1" data-duration="11.1" data-track-index="7"><div class="in"><img src="assets/pantallas/02-seguimiento.png" alt="" /></div></div>
+      <div id="s-valorar" class="pantalla clip" data-start="16.6" data-duration="2.9" data-track-index="8"><div class="in"><img src="assets/pantallas/04-valorar.png" alt="" /></div></div>
+      <div id="s-valorado" class="pantalla clip" data-start="19.2" data-duration="3" data-track-index="9"><div class="in"><img src="assets/pantallas/04b-valorado.png" alt="" /></div></div>
+
+      <!-- Piezas ampliadas (recorte de la captura: x, y, ancho, alto en px de la captura 780×1600) -->
+      <div id="p1" class="pieza clip" data-layout-allow-overflow data-layout-allow-overlap data-start="0.6" data-duration="5.4" data-track-index="10" data-crop="60,216,660,531" data-dest="1455,500"><div class="pz"><img src="assets/pantallas/01-inicio.png" alt="" /></div></div>
+      <div id="p2" class="pieza clip" data-layout-allow-overflow data-layout-allow-overlap data-start="6.7" data-duration="4.8" data-track-index="10" data-crop="50,552,680,212" data-dest="1455,540"><div class="pz"><img src="assets/pantallas/02-seguimiento.png" alt="" /></div></div>
+      <div id="p3" class="pieza clip" data-layout-allow-overflow data-layout-allow-overlap data-start="12" data-duration="4.5" data-track-index="10" data-crop="40,984,480,300" data-dest="1455,600"><div class="pz"><img src="assets/pantallas/02-seguimiento.png" alt="" /></div></div>
+      <div id="p4" class="pieza clip" data-layout-allow-overflow data-layout-allow-overlap data-start="17" data-duration="4.6" data-track-index="10" data-crop="60,425,660,170" data-dest="1455,440"><div class="pz"><img src="assets/pantallas/04-valorar.png" alt="" /></div></div>
+      <div id="p4b" class="pieza clip" data-layout-allow-overflow data-layout-allow-overlap data-start="17.8" data-duration="3.8" data-track-index="11" data-crop="60,425,660,170" data-dest="1455,440"><div class="pz"><img src="assets/pantallas/04b-valorado.png" alt="" /></div></div>
+
+      <!-- Cierre con el logo -->
+      <div id="cierre" class="clip" data-start="21.4" data-duration="5.8" data-track-index="12">
+        <div class="velo"></div>
+        <div class="marca">
+          <svg viewBox="-20 -40 690 330" aria-hidden="true">
+            <path id="inf" d="M504.915 40.0707C540.021 27.9151 581.685 36.2525 611.053 59.1389C640.872 82.3769 658.22 120.795 643.871 167.92C629.656 214.606 592.765 239.283 562.274 249.114C532.216 258.805 508.591 254.034 498.295 252.924C475.634 250.483 442.097 234.315 434.342 189.196C430.49 166.784 440.026 128.102 446.953 105.287C445.985 108.217 447.911 102.133 446.953 105.287L356.328 185.674L376.29 95.4882L342.346 134.588C342.348 134.585 342.219 134.726 342.346 134.588C342.356 134.576 342.34 134.594 342.346 134.588C342.387 134.543 342.324 134.611 342.346 134.588C342.505 134.415 342.263 134.678 342.346 134.588C342.952 133.937 342.027 134.933 342.346 134.588C344.553 132.26 341.134 135.889 342.346 134.588C337.932 139.241 326.546 151.201 319.371 158.4C305.096 172.721 286.704 190.283 270.889 202.458C239.003 227.006 215.951 241.376 195.623 250.322C175.152 259.331 157.838 262.657 137.947 265.618C89.8789 272.772 55.0075 259.578 32.257 236.957C9.81451 214.643 0.00684479 183.995 0.00884674 157.345C0.0121817 114.59 25.9166 84.8669 55.0978 66.2448C84.0594 47.7628 117.689 39.2109 136.69 39.2123C165.006 39.2143 242.42 39.3218 310.962 121.647C313.937 125.221 313.403 130.489 309.768 133.415C306.134 136.34 300.776 135.815 297.801 132.241C234.194 55.8433 160.576 55.9387 136.689 55.9369C121.353 55.9358 90.8976 63.3366 64.357 80.2736C38.036 97.0705 17.0207 122.234 17.018 157.346C17.0162 180.366 25.5712 206.525 44.3511 225.197C62.8229 243.563 92.0341 255.536 135.401 249.082C154.758 246.201 170.291 243.147 188.675 235.057C207.201 226.904 229.011 213.457 260.403 189.289C275.291 177.827 293.037 160.926 307.224 146.693C314.279 139.615 320.385 133.266 324.726 128.689C323.544 129.957 326.895 126.402 324.726 128.689C324.421 129.019 325.316 128.055 324.726 128.689C324.649 128.772 324.878 128.525 324.726 128.689C324.721 128.694 324.731 128.684 324.726 128.689L406.536 40.0633L384.192 138.433L483.076 55.9632L470.103 90.9949C470.109 90.9974 483.076 55.9632 483.076 55.9632L470.103 90.9949C469.801 91.6931 469.789 91.7233 470.103 90.9949C470.511 90.0155 469.888 91.4979 470.103 90.9949C471.482 87.4286 469.288 92.9546 470.103 90.9949C467.343 98.1357 463.738 108.063 460.352 119.214C453.439 141.983 447.981 168.184 451.113 186.409C457.327 222.562 483.279 234.482 500.147 236.299C509.615 237.319 535.663 239.209 562.275 230.629C588.454 222.189 615.233 203.663 627.577 163.123C639.787 123.021 625.248 91.5409 600.488 72.2459C575.277 52.5995 539.669 45.7686 510.564 55.846C506.134 57.38 501.278 55.0923 499.718 50.7363C498.158 46.3802 500.484 41.6047 504.915 40.0707Z" fill="#0E0057" fill-opacity="0" stroke="#0E0057" stroke-width="7" stroke-linejoin="round"/>
+            <path id="estrella" d="M482.893 0L489.493 56.79L549.559 63.0297L489.493 69.2693L482.893 126.059L476.293 69.2693L416.227 63.0297L476.293 56.79L482.893 0Z" fill="#3B6FD8"/>
+            <g id="viajero"><path d="M482.893 0L489.493 56.79L549.559 63.0297L489.493 69.2693L482.893 126.059L476.293 69.2693L416.227 63.0297L476.293 56.79L482.893 0Z" fill="#3B6FD8" transform="translate(-483 -63) scale(1)"/></g>
+          </svg>
+          <div class="nombre">MAS<span>Solis</span>app</div>
+          <div class="claim">Tu espacio, <em>siempre cuidado.</em></div>
+          <div class="cta">Pide tu acceso a MASSolis</div>
+        </div>
+      </div>
+
+      <!-- Sonidos en las acciones: tic (generado), notas de las estrellas (generadas), whoosh, clic y destello (incluidos en HyperFrames) -->
+      <audio id="a01" class="clip" src="assets/sfx/tick.mp3" data-start="6.00" data-duration="0.09" data-track-index="20" data-volume="0.55"></audio>  <!-- la hora se va -->
+      <audio id="a02" class="clip" src="assets/sfx/tick.mp3" data-start="6.55" data-duration="0.09" data-track-index="21" data-volume="0.75"></audio>  <!-- la hora nueva encaja -->
+      <audio id="a03" class="clip" src="assets/sfx/tick.mp3" data-start="11.50" data-duration="0.09" data-track-index="20" data-volume="0.55"></audio>  <!-- la hora se va -->
+      <audio id="a04" class="clip" src="assets/sfx/tick.mp3" data-start="12.05" data-duration="0.09" data-track-index="21" data-volume="0.75"></audio>  <!-- la hora nueva encaja -->
+      <audio id="a05" class="clip" src="assets/sfx/tick.mp3" data-start="16.50" data-duration="0.09" data-track-index="20" data-volume="0.55"></audio>  <!-- la hora se va -->
+      <audio id="a06" class="clip" src="assets/sfx/tick.mp3" data-start="17.05" data-duration="0.09" data-track-index="21" data-volume="0.75"></audio>  <!-- la hora nueva encaja -->
+      <audio id="a07" class="clip" src="assets/sfx/whoosh.mp3" data-start="0.53" data-duration="0.6" data-track-index="22" data-volume="0.5"></audio>  <!-- sale la pieza -->
+      <audio id="a08" class="clip" src="assets/sfx/whoosh.mp3" data-start="5.33" data-duration="0.6" data-track-index="23" data-volume="0.22"></audio>  <!-- vuelve la pieza -->
+      <audio id="a09" class="clip" src="assets/sfx/whoosh.mp3" data-start="6.63" data-duration="0.6" data-track-index="22" data-volume="0.5"></audio>  <!-- sale la pieza -->
+      <audio id="a10" class="clip" src="assets/sfx/whoosh.mp3" data-start="10.83" data-duration="0.6" data-track-index="23" data-volume="0.22"></audio>  <!-- vuelve la pieza -->
+      <audio id="a11" class="clip" src="assets/sfx/whoosh.mp3" data-start="11.93" data-duration="0.6" data-track-index="22" data-volume="0.5"></audio>  <!-- sale la pieza -->
+      <audio id="a12" class="clip" src="assets/sfx/whoosh.mp3" data-start="15.83" data-duration="0.6" data-track-index="23" data-volume="0.22"></audio>  <!-- vuelve la pieza -->
+      <audio id="a13" class="clip" src="assets/sfx/whoosh.mp3" data-start="16.93" data-duration="0.6" data-track-index="22" data-volume="0.5"></audio>  <!-- sale la pieza -->
+      <audio id="a14" class="clip" src="assets/sfx/whoosh.mp3" data-start="20.93" data-duration="0.6" data-track-index="23" data-volume="0.22"></audio>  <!-- vuelve la pieza -->
+      <audio id="a15" class="clip" src="assets/sfx/clic.mp3" data-start="6.05" data-duration="0.4" data-track-index="24" data-volume="0.6"></audio>  <!-- cambio de pantalla -->
+      <audio id="a16" class="clip" src="assets/sfx/clic.mp3" data-start="16.55" data-duration="0.4" data-track-index="24" data-volume="0.6"></audio>  <!-- cambio de pantalla -->
+      <audio id="a17" class="clip" src="assets/sfx/clic.mp3" data-start="19.15" data-duration="0.4" data-track-index="24" data-volume="0.6"></audio>  <!-- cambio de pantalla -->
+      <audio id="a18" class="clip" src="assets/sfx/nota1.mp3" data-start="17.90" data-duration="0.6" data-track-index="25" data-volume="0.5"></audio>  <!-- estrella 1 -->
+      <audio id="a19" class="clip" src="assets/sfx/nota2.mp3" data-start="18.10" data-duration="0.6" data-track-index="26" data-volume="0.5"></audio>  <!-- estrella 2 -->
+      <audio id="a20" class="clip" src="assets/sfx/nota3.mp3" data-start="18.30" data-duration="0.6" data-track-index="27" data-volume="0.5"></audio>  <!-- estrella 3 -->
+      <audio id="a21" class="clip" src="assets/sfx/nota4.mp3" data-start="18.50" data-duration="0.6" data-track-index="28" data-volume="0.5"></audio>  <!-- estrella 4 -->
+      <audio id="a22" class="clip" src="assets/sfx/nota5.mp3" data-start="18.70" data-duration="0.6" data-track-index="29" data-volume="0.5"></audio>  <!-- estrella 5 -->
+      <audio id="a23" class="clip" src="assets/sfx/whoosh.mp3" data-start="21.33" data-duration="0.6" data-track-index="22" data-volume="0.45"></audio>  <!-- el velo cubre la escena -->
+      <audio id="a24" class="clip" src="assets/sfx/destello.mp3" data-start="22.98" data-duration="2.5" data-track-index="30" data-volume="0.7"></audio>  <!-- aparece la estrella del logo -->
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const S = 398 / 780;                     // escala de la captura dentro del móvil
+      const PX = 1256, PY = 152;               // esquina de la pantalla del móvil en el fotograma
+
+      // ---- La hora rueda hacia arriba ----
+      const rueda = (sale, entra, t) => {
+        tl.to(sale + " .in", { yPercent: -120, duration: 0.32, ease: "power2.in", immediateRender: false }, t);
+        tl.fromTo(entra + " .in", { yPercent: 120 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, t + 0.22);
+      };
+      rueda("#h1", "#h2", 6.0);
+      rueda("#h2", "#h3", 11.5);
+      rueda("#h3", "#h4", 16.5);
+      tl.to("#h4 .in", { yPercent: -110, duration: 0.4, ease: "power2.in" }, 21.3);
+
+      // ---- Frases: entran 0,15 s después de la hora y se quedan quietas mientras se leen ----
+      [["#f2", 6.1], ["#f3", 11.6], ["#f4", 16.6]].forEach(([id, t]) => {
+        tl.fromTo(id + " .in", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, t + 0.15);
+      });
+      [["#f1", 5.95], ["#f2", 11.45], ["#f3", 16.45], ["#f4", 21.45]].forEach(([id, fin]) => {
+        tl.to(id + " .in", { y: -20, opacity: 0, duration: 0.3, ease: "power2.in" }, fin - 0.35);
+      });
+
+      // ---- Luz del día: mañana fría, mediodía neutra, 13:00 cálida ----
+      tl.to("#mundo .tono", { opacity: 0, duration: 1.2, ease: "power1.inOut" }, 6.0);
+      tl.fromTo("#mundo .tono", { backgroundColor: "#bfd3ff" }, { backgroundColor: "#ffd2a0", duration: 0.01 }, 11.4);
+      tl.to("#mundo .tono", { opacity: 0.14, duration: 1.2, ease: "power1.inOut" }, 11.5);
+      tl.fromTo("#mundo img", { scale: 1 }, { scale: 1.06, duration: 21.4, ease: "none" }, 0);
+
+      // ---- Navegación dentro del móvil ----
+      const empuja = (sale, entra, t) => {
+        tl.fromTo(entra + " .in", { x: 398 }, { x: 0, duration: 0.45, ease: "power3.out" }, t);
+        tl.to(sale + " .in", { x: -110, duration: 0.45, ease: "power3.out", immediateRender: false }, t);
+      };
+      empuja("#s-inicio", "#s-seguimiento", 6.1);
+      empuja("#s-seguimiento", "#s-valorar", 16.6);
+      tl.fromTo("#s-valorado .in", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 19.2);
+
+      // ---- Piezas: salen del móvil ampliadas 1,7x y vuelven a su sitio ----
+      document.querySelectorAll(".pieza").forEach((el) => {
+        const [cx, cy, cw, ch] = el.dataset.crop.split(",").map(Number);
+        const [dx, dy] = el.dataset.dest.split(",").map(Number);
+        const pz = el.querySelector(".pz"), img = pz.querySelector("img");
+        Object.assign(pz.style, { left: PX + cx * S + "px", top: PY + cy * S + "px", width: cw * S + "px", height: ch * S + "px" });
+        Object.assign(img.style, { left: -cx * S + "px", top: -cy * S + "px" });
+        const t0 = parseFloat(el.dataset.start), t1 = t0 + parseFloat(el.dataset.duration);
+        const mx = dx - (PX + cx * S) - (cw * S) / 2 + (cw * S * 1.7) / 2 - (cw * S * 1.7) / 2; // centro destino en x
+        const tx = dx - (PX + cx * S + (cw * S) / 2), ty = dy - (PY + cy * S + (ch * S) / 2);
+        if (el.id === "p4b") {
+          // Las estrellas se rellenan una a una: se descubre la versión «valorado» de izquierda a derecha
+          tl.set(pz, { x: tx, y: ty, scale: 1.7, boxShadow: "0 30px 60px rgba(14,31,77,0)" }, t0);
+          const centros = [130, 230, 330, 430, 530];
+          tl.set(pz, { clipPath: "inset(0px " + cw * S + "px 0px 0px)" }, t0);
+          centros.forEach((c, i) => {
+            tl.to(pz, { clipPath: "inset(0px " + (cw - (c + 50)) * S + "px 0px 0px)", duration: 0.12, ease: "power2.out" }, t0 + 0.1 + i * 0.2);
+          });
+          tl.to(pz, { clipPath: "inset(0px 0px 0px 0px)", duration: 0.1 }, t0 + 1.2);
+          tl.to(pz, { x: 0, y: 0, scale: 1, duration: 0.55, ease: "power2.inOut" }, t1 - 0.6);
+          return;
+        }
+        tl.fromTo(pz, { x: 0, y: 0, scale: 1, boxShadow: "0 30px 60px rgba(14,31,77,0)" },
+          { x: tx, y: ty, scale: 1.7, boxShadow: "0 30px 60px rgba(14,31,77,0.3)", duration: 0.6, ease: "power3.out" }, t0);
+        tl.to(pz, { x: 0, y: 0, scale: 1, boxShadow: "0 30px 60px rgba(14,31,77,0)", duration: 0.55, ease: "power2.inOut" }, t1 - 0.6);
+      });
+
+      // ---- Cierre: el velo cubre todo, el infinito se dibuja con la estrella ----
+      tl.fromTo("#cierre .velo", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "power2.inOut" }, 21.4);
+      const inf = document.getElementById("inf");
+      const L = inf.getTotalLength();
+      tl.fromTo(inf, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.6, ease: "none" }, 21.9);
+      tl.to(inf, { fillOpacity: 1, duration: 0.4, ease: "power1.out" }, 23.4);
+      const viajero = document.getElementById("viajero");
+      const paso = { d: 0 };
+      tl.set(viajero, { opacity: 0 }, 0);
+      tl.set(viajero, { opacity: 1 }, 21.9);
+      tl.fromTo(paso, { d: 0 }, {
+        d: 1, duration: 1.6, ease: "none",
+        onUpdate: () => { const p = inf.getPointAtLength(paso.d * L); viajero.setAttribute("transform", "translate(" + p.x + " " + p.y + ") scale(.45)"); }
+      }, 21.9);
+      tl.set(viajero, { opacity: 0 }, 23.5);
+      tl.fromTo("#estrella", { scale: 0, rotation: -90, transformOrigin: "50% 50%" }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2)" }, 23.4);
+      tl.fromTo("#cierre .nombre", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 23.6);
+      tl.fromTo("#cierre .claim", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 23.8);
+      tl.fromTo("#cierre .cta", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 24.0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

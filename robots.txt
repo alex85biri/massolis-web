@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Pendiente: cuando haya dominio definitivo, añadir la línea del mapa del sitio:
+# Sitemap: https://DOMINIO/sitemap.xml

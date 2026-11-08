@@ -1,0 +1,9 @@
+video-app/node_modules/
+video-app/.hyperframes/
+video-app/renders/
+video-promo/node_modules/
+video-promo/.hyperframes/
+video-promo/renders/
+video-app/.media/
+video-promo/.media/
+**/.thumbnails/

@@ -1,0 +1,79 @@
+# MASSolis · web
+
+Web de una sola página para **MASSolis — Solución sostenible**, empresa de limpieza y desinfección. HTML + CSS sin framework, en español.
+
+## Estado (8 nov 2026)
+Primera versión hecha, pendiente de opinión de la usuaria.
+
+## Archivos
+- `index.html` — la web (HTML y script; sin estilos dentro).
+- `estilos.css` — **todos los estilos de todas las páginas**, con el sistema de diseño en `:root`.
+- `aviso-legal.html`, `privacidad.html`, `cookies.html` — páginas legales (mismo diseño; las tres en el pie de todas las páginas; la de privacidad, también en las casillas de los dos formularios).
+- `fonts/` — tipografías servidas desde la propia web (Plus Jakarta Sans variable 400–800 e Instrument Serif cursiva, solo juego latino). **No se usa Google Fonts** (privacidad: la IP no viaja a Google; y más rápido).
+- `logo.svg` — logo original de la empresa (copiado de `Escritorio\Group 3.svg`; no modificarlo). Color del logo `#0E0057`.
+- `docs/` — informes (auditoría WCAG).
+
+## Privacidad y cookies (8 nov 2026)
+- **La web no usa cookies** (ni propias ni de terceros, ni analítica). Solo `localStorage` `massolis-opiniones` (la opinión que envía la propia persona), exento de consentimiento (art. 22.2 LSSI) → **no hay banner de cookies**, a propósito. Si algún día se añade analítica o publicidad, hará falta banner con consentimiento previo y actualizar `cookies.html`.
+- Externos: solo las fotos provisionales de Unsplash (comprobado: no ponen cookies) y FormSubmit cuando se active el envío. Al quitar Unsplash, borrar ese punto de las dos políticas.
+- Consentimiento: casilla obligatoria en presupuesto y en opiniones (esta autoriza publicar la opinión con el nombre escrito), ambas con enlace a `privacidad.html`.
+- **Pendiente (resaltado en amarillo en las páginas, clase `.pendiente`)**: razón social, NIF/CIF, dirección, correo real, proveedor de hosting y proveedor de envío de formularios (con sus garantías si está fuera del EEE). **Aviso legal** (`aviso-legal.html`, LSSI art. 10) hecho: titular, objeto, condiciones de uso, propiedad intelectual, responsabilidad, opiniones, datos y ley aplicable; sus datos del titular (incl. datos registrales si es sociedad y teléfono opcional) también están pendientes. Las políticas son una base redactada según RGPD/LOPDGDD/LSSI: conviene revisión profesional antes de publicar.
+
+## Sistema de diseño (unificado el 8 nov 2026, pedido de la usuaria)
+**Una sola fuente: el bloque `:root` al principio del `<style>` de `index.html`.** Regla: el resto del CSS solo usa `var(--…)`; no se escriben colores, radios, sombras ni tamaños de letra sueltos. Si falta algo, se añade como variable en `:root`.
+- **Color de marca:** `--navy-deep` (titulares), `--navy` (botones y bloques oscuros), `--navy-ink` (logo), `--sky` (acento sobre claro), `--sky-300` (antetítulos sobre oscuro), `--sky-200` (acento sobre oscuro), `--sky-100` (superficies suaves), `--app-sky` (fondo de MASSolisapp), `--star`, `--err`.
+- **Neutros:** `--white`, `--ice`, `--line`, `--line-strong`, `--text`, `--text-soft`, `--muted`, `--muted-on-dark`.
+- **Transparencias:** solo con canales: `rgb(var(--navy-rgb) / .35)` (también `--white-rgb`, `--deep-rgb`, `--sky-rgb`, `--glow-rgb`).
+- **Tipografía:** `--font-sans` (Plus Jakarta Sans) y `--font-serif` (Instrument Serif cursiva, solo la palabra destacada en `<em>`). Escala `--fs-3xs` 10 · `2xs` 11 · `xs` 12 · `sm` 13 · `base` 14 · `md` 15 · `lg` 16 · `xl` 18 · `2xl` 22 · `3xl` 30 · `4xl` 44, y títulos `--fs-h1/h2/h3` (clamp). Solo los números decorativos (01/02/03, comillas) llevan px propios.
+- **Radios:** `--r-xs` 8 · `sm` 12 · `md` 20 · `lg` 26 · `xl` 30 · `2xl` 48 · `pill`, y `--r-phone`/`--r-screen` para el móvil dibujado.
+- **Sombras:** `--shadow-sm`, `--shadow-md`, `--shadow-lg`, `--shadow-phone`, `--ring`.
+- **Espacios y movimiento:** `--gutter`, `--section` (96) / `--section-sm` (64 en móvil), `--container`, `--ease`, `--dur`.
+- **Sin modo oscuro**: se probó (8 nov 2026) y la usuaria prefirió quedarse con el diseño original en claro.
+- `--sky-ink` (#2A56B4): azul para texto pequeño sobre superficies hielo (el `--sky` no llega al contraste AA ahí). `--err-text` para errores sobre claro.
+- **Componentes comunes:** `.btn` (+ `.btn-light` blanco sobre oscuro, `.btn-lg` grande, `.arrow`), `.btn-round`, `.kicker`, y **`.on-dark`** en cada bloque oscuro (`.about`, `.eco`, `.plus`, `.plan.dark`, `.op-form-wrap`): pone antetítulos y palabras destacadas en sus tonos claros. Un bloque oscuro nuevo solo necesita esa clase.
+
+## SEO (8 nov 2026)
+Lighthouse en móvil con compresión (como en hosting real): **SEO 100 · Accesibilidad 100 · Buenas prácticas 100 · Rendimiento 91**. Sin compresión (http-server local) el rendimiento baja a ~85: el hosting debe servir gzip/brotli (Vercel y Netlify lo hacen solos).
+- `<head>`: título y descripción con palabras clave, `robots`, `theme-color`, Open Graph + Twitter (`og-image.jpg`, 1200×630, generada con la foto del salón y el logo), iconos (`logo.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`), `site.webmanifest`, precarga de la foto de portada (misma URL que usa el CSS), fuentes de Google cargadas sin bloquear.
+- **Datos estructurados (JSON-LD)**: `Organization` con su catálogo de servicios (los 6 planes), `WebSite`, `WebPage` y `FAQPage` (las 10 preguntas, sacadas del propio HTML: si se cambian en la web, regenerar el JSON-LD). **Sin `AggregateRating`**: las opiniones son de ejemplo y Google penaliza reseñas inventadas o de la propia empresa.
+- Estructura: un solo `<h1>`, `<main id="contenido">`, enlace «Saltar al contenido», nombres de planes como `<h3>`, texto alternativo en todas las fotos, `srcset` en las fotos de Unsplash.
+- `robots.txt` y `llms.txt` (resumen para buscadores con IA).
+- **Pendiente de datos de la empresa**: dominio definitivo (para `canonical`, URLs absolutas en `og:url`/`og:image`, `sitemap.xml` y la línea `Sitemap:` de `robots.txt`); ciudad o zona de trabajo, teléfono y dirección (para pasar `Organization` a `LocalBusiness` y para el SEO local); correo real.
+
+## Accesibilidad (WCAG 2.2 AA, 8 nov 2026)
+Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo comprobado (axe-core en 5 estados: 0 errores; Lighthouse accesibilidad 100; revisión manual: 9 problemas corregidos). Reglas para no romperlo:
+- **Brillos de la marca sin fin, por decisión de la usuaria** (indispensables para la marca, aunque incumplan WCAG 2.2.2; documentado como excepción aceptada en el informe). **Siempre deben pararse con «reducir movimiento»**. El carrusel de opiniones mantiene su botón Pausar/Reanudar (`#op-pausa`).
+- Bordes de campos y controles con `--control-border` (≥ 3:1); foco con `--ring` (bien visible).
+- Etiquetas sobre fotos con fondo `rgb(var(--deep-rgb) / .82)` como mínimo.
+- Puntos de carrusel = botones con `aria-current` (no `role="tab"`); errores de formulario con `aria-invalid` + `aria-describedby`.
+- Pendiente: probar con lectores de pantalla reales; política de privacidad para el formulario.
+
+## Formulario de presupuesto (`#contacto`)
+**Se abre en una ventana emergente** (`<dialog id="presu-dialogo">`, fuera de `<main>`) solo al pulsar un botón de presupuesto: cualquier enlace a `#contacto` o con `data-abrir-presu` (cabecera, «Reserva una limpieza», planes, «Escríbenos»…). En la página queda un bloque corto: «¿Hablamos de tu espacio?» con los tres pasos y el botón «Pedir presupuesto» (la usuaria no quería el formulario a la vista de buenas a primeras). Se cierra con la X, Escape o pulsando fuera; en móvil ocupa toda la pantalla. **El formulario de opiniones funciona igual** (`<dialog id="op-dialogo">`, se abre con «Dejar mi opinión», `data-abrir-opinion`). Planes con su **código visible** (01M, 02MA, 03MAS, 04MASS, LG, Desinfección, «Aún no lo sé»), tipo de vivienda (con «Aún no lo sé»), metros, frecuencia, extras, nombre, teléfono o correo (al menos uno), localidad, mensaje y casilla de privacidad. Los botones de cada plan (`data-plan`) dejan ese plan marcado.
+- Envío: constante `CORREO_PRESUPUESTOS` al principio del bloque «Presupuesto» del script. **Vacía** → abre el programa de correo del visitante con la solicitud rellenada (a `info@massolis.es`, de ejemplo). **Con un correo** → envía por FormSubmit (`formsubmit.co/ajax/…`, gratis, sin cuenta; la primera solicitud manda a ese correo un enlace de activación que hay que pulsar una vez).
+
+## Decisiones
+- Color principal **azul marino** con acento azul y fondo blanco; letra Plus Jakarta Sans y palabras destacadas en cursiva Instrument Serif (`<em>`). Valores exactos en el sistema de diseño de arriba.
+- Referencias de la usuaria: hero tipo "CleanSpace" (marco blanco, foto a la derecha con degradado, botón con flecha, tres sellos) y estructura tipo "Soul" (pasos en tarjetas de tonos del color, lista de servicios con fila que se resalta, dos formatos claro/oscuro, foto grande con círculo central).
+- Portada (8 nov 2026, pedido de la usuaria): foto de una **estancia limpia, sin personas** (salón con cocina) y **sin el velo gris**; el texto va en blanco sobre un degradado suave azul marino. Encima, **estrellas del logo** (`#estrella`, misma forma que en `logo.svg`) que brillan con pulso (`.sparkles`, animación `pulso`; quietas si el usuario pide menos movimiento). No usar fotos con personas limpiando.
+- Fondo **todo blanco a pantalla completa**: sin margen gris alrededor de la portada (lo pidió la usuaria). **Cabecera fija** (`.top-bar`, `position: sticky`) con sombra al bajar.
+- En el script no usar `top` como nombre de variable (choca con `window.top` y rompe todo el script).
+- **Contenido sacado del manual interno de la empresa** («Manual de limpieza MASS», PDF en `Descargas`, 18 págs.; no se copia al proyecto). Solo lo que interesa al cliente: planes 01M Mantenimiento (2–3 h), 02MA Amplio (3–4 h), 03MAS Amplio Solución (4–5 h, productos y maquinaria de la empresa), 04MASS Amplio Solución Sostenible (5–6 h, orden Marie Kondo, colada y plancha), LG Limpieza General (primera vez o casa nueva, incluye MAS + MASS), Desinfección (fricción u ozono), el «Plus MASS» de cada plan, el método (interior/exterior según la estación, «la carga» o Pareto, de arriba abajo y de dentro a fuera, orden final), una franja «Plus MASS: y siempre, un detalle de más» al final del método (la usuaria pidió quitar el código de colores de los paños y destacar el detalle extra), los valores (profesionalidad, sostenibilidad, compromiso) y la adaptación a cada tipo de cliente. **Fuera de la web**: riesgos laborales, normas de comportamiento del personal y técnicas internas (doblado, camas, electrodomésticos paso a paso).
+- El manual solo habla de casas (y patios): la web ya no ofrece oficinas ni empresas.
+- **Logo en línea** (`#infinito` + `#estrella` en el `<svg>` oculto del principio del `<body>`): en cabecera y pie, infinito azul marino algo más grueso y estrella que brilla (`destello`). `logo.svg` sigue siendo el original.
+- **Pasos para empezar**: tarjetas con foto coherente con cada paso (01 dos cafés en una mesa = te escuchamos; 02 libreta y gafas sobre mármol = elegimos el plan; 03 baño de mármol con espejos dorados = casa brillante), número en cursiva y un destello (`.spark`) colocado sobre un brillo real de la foto.
+- **Para empezar y para mantener** (`.duo`, `.plan`): dos tarjetas con foto (llave con llavero de casa = Limpieza General; salón ordenado = Mantenimiento), lista con marcas, selector de frecuencia informativo (Semanal/Quincenal/Mensual, `.freq`), calendario de tareas (cada visita / cada mes / cada 6 meses) y botón a lo ancho. La versión anterior, con iconos sueltos, quedaba mal en el móvil.
+- **Sección del símbolo** (`.eco`, antes el círculo, que a la usuaria no le gustaba): el infinito del logo se dibuja con un destello que lo recorre (`#inf-anim` + `animateMotion`, se lanza al llegar a la sección) y luego aparece la estrella. Mensaje: el infinito es equilibrio con el medio ambiente.
+- **MASSolisapp** (`#app`): la empresa usa MASSolisapp, la plataforma que diseñó la usuaria (caso en su portfolio: https://marian-portfolio-mu.vercel.app/casos/massolis/expediente): panel de oficina, app de profesionales y **portal del cliente**. La web presenta el portal (servicio de hoy, fotos antes/después, pedir cambio, valorar, mis servicios, mensajes). **No se enlaza ni se incrusta el prototipo** (la usuaria no lo quiere en la web).
+- **Sección de la app** (`#app`): texto, ventajas y botón «Quiero mi acceso» a la izquierda; a la derecha un **mockup fijo**: móvil dibujado con la pantalla real de Inicio del portal (`media/portal-inicio.png`, captura 2x del prototipo) y barra de estado propia. **Sin vídeo** (la usuaria descartó el vídeo de uso y luego el promocional). Los proyectos de vídeo quedan en `video-app/` y `video-promo/` (con `SPEC.md`) por si se retoman; los MP4 se borraron de `media/`.
+- Menú: entre 901 y 1060 px usa el desplegable; por debajo de 1180 px se oculta el botón redondo de la flecha.
+- Opiniones: las 6 de ejemplo llevan `data-ejemplo`; **cada opinión real que entra quita una de ejemplo** (pedido de la usuaria). Hoy «real» = enviada desde el formulario y guardada en ese navegador; cuando haya servidor, cargar las reales desde ahí con la misma lógica.
+- Logo animado de `.eco`: al pulsarlo (o Intro/Espacio) la animación vuelve a empezar.
+- Opiniones: **carrusel con las 6 opiniones y tres a la vista** en ordenador (dos en tablet, una en móvil, variable `--vista`), con flechas que avanzan de una en una, puntos, deslizable y pase automático cada 7 s (en pausa con el ratón encima).
+- **Preguntas frecuentes** (`#faq`): 10 preguntas concretas sacadas del manual y de la app (duración por plan, colada y plancha, fricción u ozono, patio y plantas, materiales delicados, ordenar tus cosas, tareas periódicas, ver quién viene, cambiar hora o día, cómo saber que está bien hecho), con filtro por tema (Servicios · Tu casa · App) y columna fija «¿No encuentras tu pregunta?». La usuaria rechazó la versión anterior por genérica.
+- **Opiniones** (`#opiniones`): 6 opiniones **inventadas de ejemplo** (pedido de la usuaria; sustituir por reales), con las etiquetas de valoración de la app. Media y total se calculan solos. **Formulario «Deja tu opinión»** (estrellas, nombre, servicio, etiquetas, comentario): de momento la opinión solo se guarda en el navegador de quien la escribe (`localStorage`, clave `massolis-opiniones`) y sale marcada «pendiente de revisión». **Para recibirlas de verdad hace falta un servidor** (p. ej. Supabase o un servicio de formularios) o enlazarlas con las valoraciones de MASSolisapp.
+- Fotos de Unsplash enlazadas (provisionales): sustituir por fotos reales de MASSolis.
+- El correo `info@massolis.es` es de ejemplo, y no hay precios: confirmarlo con la empresa.
+
+## Ver en local
+Configuración `massolis-web` en `Apps/carta-ar/.claude/launch.json` (http-server en el puerto 4180), o abrir `index.html` directamente.
