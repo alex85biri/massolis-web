@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Esta página se sirve en cualquier dirección que no existe (también en subcarpetas):
+  // la base apunta siempre a la raíz de la web, esté en /massolis-web/ (GitHub Pages) o en un dominio propio.
+  (function () {
+    var raiz = location.pathname.indexOf('/massolis-web/') === 0 ? '/massolis-web/' : '/';
+    var b = document.createElement('base'); b.href = raiz; document.head.appendChild(b);
+  })();
+</script>
+<title>Página no encontrada | MASSolis</title>
+<meta name="description" content="La página que buscas no existe o ha cambiado de sitio. Vuelve al inicio de MASSolis.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/PlusJakartaSans-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body class="pagina-legal">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="estrella-404" fill="currentColor" d="M482.893 0L489.493 56.79L549.559 63.0297L489.493 69.2693L482.893 126.059L476.293 69.2693L416.227 63.0297L476.293 56.79L482.893 0Z"/>
+  </defs>
+</svg>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="legal-top">
+  <a class="brand" href="./">
+    <img src="logo.svg" alt="" width="72" height="30">
+    <span><span class="brand-name">MAS<span>Solis</span></span><span class="brand-tag">Solución sostenible</span></span>
+  </a>
+  <a class="btn" href="./">Volver a la web</a>
+</header>
+
+<main id="contenido" class="error-404">
+  <p class="e404-cifra" aria-hidden="true">4<span class="e404-estrella"><svg viewBox="416 0 134 127"><use href="#estrella-404"/></svg></span>4</p>
+  <p class="kicker">Error 404 · Página no encontrada</p>
+  <h1>Lo hemos dejado <em>tan limpio</em> que aquí no queda nada</h1>
+  <p class="e404-texto">La página que buscas no existe o ha cambiado de sitio. Puede que el enlace esté mal escrito o que sea antiguo.</p>
+  <div class="cluster e404-acciones">
+    <a class="btn btn-lg" href="./">Ir al inicio <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    <a class="btn btn-ghost btn-lg" href="./#presupuesto">Pedir presupuesto</a>
+  </div>
+  <nav class="e404-enlaces" aria-label="Quizá buscabas">
+    <p>Quizá buscabas:</p>
+    <ul class="cluster">
+      <li><a class="chip-btn" href="./#servicios">Nuestros planes</a></li>
+      <li><a class="chip-btn" href="./#metodo">El método MASS</a></li>
+      <li><a class="chip-btn" href="./#opiniones">Opiniones</a></li>
+      <li><a class="chip-btn" href="./#faq">Preguntas frecuentes</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer class="legal-pie">
+  <span>© 2026 MASSolis · Limpieza y desinfección</span>
+  <nav class="pie-legal" aria-label="Información legal">
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html">Política de privacidad</a>
+    <a href="cookies.html">Política de cookies</a>
+  </nav>
+  <p class="firma">Web diseñada y desarrollada por <a href="https://marian-portfolio-mu.vercel.app/" rel="author">Marian López Solís</a> · <a href="https://www.linkedin.com/in/marian-lopez-solis-a15707389" rel="me noopener">LinkedIn<span class="sr-only"> de Marian López Solís</span></a></p>
+</footer>
+</body>
+</html>

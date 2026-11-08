@@ -270,12 +270,6 @@
   .btn-icon--on-dark { background: rgb(var(--white-rgb) / .12); border-color: rgb(var(--white-rgb) / .25); color: var(--white); }
   .btn-icon--on-dark:hover { background: var(--white); color: var(--navy); }
 
-  /* ---------- Variantes extra de botón ---------- */
-  .btn-ghost { background: transparent; color: var(--color-primary); box-shadow: inset 0 0 0 1.5px var(--color-border-control); }
-  .btn-ghost:hover { background: var(--color-surface-alt); }
-  .btn-sm { height: var(--size-control-sm); padding: 0 16px; font-size: var(--fs-sm); }
-  .btn-block { width: 100%; justify-content: space-between; }
-
   /* ---------- Campo de formulario: .field (+ --on-dark) ---------- */
   .field {
     width: 100%; font: inherit; font-size: var(--fs-md); color: var(--navy-deep); background: var(--white);
@@ -341,6 +335,11 @@
   .btn-light .arrow { background: var(--navy); color: var(--white); }
   .btn-lg { height: 52px; padding: 0 26px; font-size: var(--fs-md); }
   .btn-lg .arrow { width: 38px; height: 38px; margin-right: -18px; }
+  /* Más variantes (van después de .btn para ganarle en la cascada) */
+  .btn-ghost { background: transparent; color: var(--color-primary); box-shadow: inset 0 0 0 1.5px var(--color-border-control); }
+  .btn-ghost:hover { background: var(--color-surface-alt); }
+  .btn-sm { height: var(--size-control-sm); padding: 0 16px; font-size: var(--fs-sm); }
+  .btn-block { width: 100%; justify-content: space-between; }
   .btn .arrow {
       width: 32px; height: 32px; border-radius: 50%;
       background: var(--white); color: var(--navy);
@@ -946,6 +945,19 @@
    PÁGINAS · plantillas de otras páginas (legales)
    ===================================================================== */
 @layer pages {
+  /* Página de error 404 */
+  .error-404 { max-width: 760px; margin: 0 auto; padding: var(--sp-16) var(--gutter) var(--section-sm); text-align: center; color: var(--text); }
+  .e404-cifra { display: flex; justify-content: center; align-items: center; gap: var(--sp-2); margin: 0 0 var(--sp-4); font-size: clamp(96px, 22vw, 180px); font-weight: var(--fw-black); line-height: 1; letter-spacing: var(--tracking-tight); color: var(--navy-deep); }
+  .e404-estrella { position: relative; display: grid; place-items: center; width: .82em; height: .82em; border-radius: 50%; background: var(--ice); color: var(--sky); }
+  .e404-estrella svg { width: 52%; height: auto; animation: latido 2.8s var(--ease-in-out) infinite; }
+  .error-404 h1 { margin: var(--sp-3) auto 0; max-width: 18ch; font-size: var(--fs-h2); line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); color: var(--navy-deep); }
+  .error-404 h1 em { color: var(--sky); }
+  .e404-texto { margin: var(--sp-4) auto 0; max-width: 46ch; font-size: var(--fs-lg); line-height: var(--lh-body); color: var(--muted); }
+  .e404-acciones { justify-content: center; margin-top: var(--sp-8); }
+  .e404-enlaces { margin-top: var(--sp-12); padding-top: var(--sp-6); border-top: 1px solid var(--line); }
+  .e404-enlaces p { margin: 0 0 var(--sp-3); font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--navy-deep); }
+  .e404-enlaces ul { justify-content: center; margin: 0; padding: 0; list-style: none; }
+  .e404-enlaces .chip-btn { text-decoration: none; }
   /* ---------- Páginas legales (privacidad y cookies) ---------- */
   .pagina-legal { background: var(--white); }
   .legal-top {
@@ -1033,6 +1045,7 @@
     }
   @media (prefers-reduced-motion: reduce) { .spark::before, .spark svg { animation: none; } }
   @media (prefers-reduced-motion: reduce) { .plus-star { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .e404-estrella svg { animation: none; } }
   @media (max-width: 1060px) { .op-grid { --vista: 2; } }
   @media (max-width: 640px) { .op-grid { --vista: 1; } }
   @media (max-width: 1180px) {

@@ -3,7 +3,13 @@
 Web de una sola página para **MASSolis — Solución sostenible**, empresa de limpieza y desinfección. HTML + CSS sin framework, en español.
 
 ## Estado (8 nov 2026)
-Primera versión hecha, pendiente de opinión de la usuaria.
+Primera versión publicada en GitHub Pages (ver «Publicada»).
+
+## ⚠ MASSolisapp OCULTA hasta su lanzamiento (decisión de la usuaria, 8 nov 2026)
+La app «se lanzará próximamente»: **no debe aparecer nada de ella en la web pública** hasta que la usuaria diga que se puede.
+- El commit **7f39b53** («Ocultar MASSolisapp hasta su lanzamiento») quitó: enlace «App» del menú, la sección `#app` (texto, ventajas, botón «Quiero mi acceso» y móvil con la captura), el filtro «App» y las 3 preguntas de la app en las FAQ (y en el JSON-LD), la mención en la opinión de Carmen G. y en el formulario de opinión, la frase del aviso legal, el bloque de `llms.txt` y `media/portal-inicio.png`. Los estilos (`.app`, `.phone`…) siguen en `estilos.css`.
+- **Para lanzarla:** `git revert 7f39b53` (lo devuelve todo tal cual), revisar que encaja con lo que haya cambiado desde entonces, regenerar si hace falta el JSON-LD de las FAQ, pasar axe y publicar. Volver a poner MASSolisapp en la política de privacidad si el portal trata datos de la web.
+- Los proyectos de vídeo `video-app/` y `video-promo/` (descartados, con capturas de la app) están solo en local (`.gitignore`).
 
 ## Archivos
 - `index.html` — la web (HTML y script; sin estilos dentro).
@@ -12,6 +18,7 @@ Primera versión hecha, pendiente de opinión de la usuaria.
 - `fonts/` — tipografías servidas desde la propia web (Plus Jakarta Sans variable 400–800 e Instrument Serif cursiva, solo juego latino). **No se usa Google Fonts** (privacidad: la IP no viaja a Google; y más rápido).
 - `logo.svg` — logo original de la empresa (copiado de `Escritorio\Group 3.svg`; no modificarlo). Color del logo `#0E0057`.
 - `docs/` — informes (auditoría WCAG).
+- `404.html` — página de error (GitHub Pages la sirve en cualquier dirección que no existe). Pone `<base>` a la raíz por script (`/massolis-web/` en GitHub Pages, `/` en dominio propio): si cambia la carpeta, cambiarlo ahí. `noindex`.
 - `design-system.html` — guía viva del sistema de diseño. **Solo de uso interno: no se publica** (está en `.gitignore`; decisión de la usuaria, 8 nov 2026). Verla en local: http://localhost:4180/design-system.html
 
 ## Privacidad y cookies (8 nov 2026)
