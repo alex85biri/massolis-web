@@ -80,5 +80,10 @@ Informe completo en `docs/auditoria-wcag-2026-11-08.md`. Cumple AA en todo lo co
 - El correo `info@massolis.es` es de ejemplo, y no hay precios: confirmarlo con la empresa.
 - **Firma de autoría** (pedido de la usuaria, 8 nov 2026): última línea del pie de todas las páginas, `.firma`: «Web diseñada y desarrollada por Marian López Solís» (enlace a su portfolio https://marian-portfolio-mu.vercel.app/, `rel="author"`) · LinkedIn (https://www.linkedin.com/in/marian-lopez-solis-a15707389).
 
+## Publicada (8 nov 2026)
+- Repositorio **público**: https://github.com/frlmrn13-png/massolis-web (cuenta GitHub `frlmrn13-png`, rama `main`).
+- **Web en GitHub Pages: https://frlmrn13-png.github.io/massolis-web/** (se actualiza sola con cada push a `main`, en ~1 min). Guía: `…/design-system.html`.
+- Es una vista previa: cuando haya dominio propio, configurarlo en Pages (o el hosting definitivo) y poner `canonical` y URLs absolutas.
+
 ## Ver en local
 Configuración `massolis-web` en `Apps/carta-ar/.claude/launch.json` (http-server en el puerto 4180), o abrir `index.html` directamente.
