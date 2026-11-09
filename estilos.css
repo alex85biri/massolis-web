@@ -194,6 +194,8 @@
 @layer base {
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  /* Secciones que reciben el foco al usar un enlace interno (enlaces.js): sin recuadro de foco */
+  [tabindex="-1"]:focus { outline: none; }
   body {
       font-family: var(--font-sans);
       color: var(--text);

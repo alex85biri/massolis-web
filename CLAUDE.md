@@ -12,6 +12,7 @@ La app «se lanzará próximamente»: **no debe aparecer nada de ella en la web 
 - Los proyectos de vídeo `video-app/` y `video-promo/` (descartados, con capturas de la app) están solo en local (`.gitignore`).
 
 ## Archivos
+- `enlaces.js` — (9 nov 2026, pedido de la usuaria) los enlaces internos (`href="#…"`) bajan a su sección **sin poner «#» en la dirección**, y si se llega con un «#» se baja a esa sección y se limpia. Se carga con `defer` al final de las cuatro páginas, después de su propio script (respeta los enlaces que ya hacen otra cosa, como abrir el presupuesto). El «#» no era ninguna vulnerabilidad: es solo estético.
 - `index.html` — la web (HTML y script; sin estilos dentro).
 - `estilos.css` — **todos los estilos de todas las páginas**, con el sistema de diseño en `:root`.
 - `aviso-legal.html`, `privacidad.html`, `cookies.html` — páginas legales (mismo diseño; las tres en el pie de todas las páginas; la de privacidad, también en las casillas de los dos formularios).
