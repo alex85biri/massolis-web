@@ -32,11 +32,14 @@
     limpiaDireccion();
   });
 
-  // Llegada con «#» en la dirección: bajar a esa sección y quitar el «#»
-  window.addEventListener('load', function () {
+  // Llegada con «#» en la dirección (al cargar, o al cambiarla estando ya en la página):
+  // bajar a esa sección y quitar el «#»
+  var llegada = function (instantaneo) {
     if (!location.hash) return;
     var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (el) el.scrollIntoView({ behavior: 'instant' });
+    if (el) el.scrollIntoView(instantaneo ? { behavior: 'instant' } : undefined);
     limpiaDireccion();
-  });
+  };
+  window.addEventListener('load', function () { llegada(true); });
+  window.addEventListener('hashchange', function () { llegada(false); });
 })();
