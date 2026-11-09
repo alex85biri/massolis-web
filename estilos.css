@@ -786,6 +786,41 @@
     }
   .about h2 { color: var(--white); }
   .about .intro { color: var(--muted-on-dark); }
+  /* Palabras de la fundadora (del prólogo de «Con corazón todo se hace MASS y mejor») */
+  .fundadora-desplegable {
+      grid-column: 1 / -1; order: 1; position: relative; z-index: 1;
+      background: none; border: 0; border-radius: 0; padding: 0;
+    }
+  .fundadora-desplegable[open] > summary::after { transform: none; }
+  .fundadora-desplegable p { margin-top: 0; }
+  .fundadora-desplegable > summary {
+      list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: var(--sp-3);
+      color: var(--white); font-weight: var(--fw-semibold, 600); font-size: var(--fs-md);
+      padding: var(--sp-3) var(--sp-5); border: 1px solid rgb(var(--white-rgb) / .3); border-radius: var(--r-pill);
+      min-height: var(--size-tap-min, 44px); transition: background var(--dur) var(--ease);
+    }
+  .fundadora-desplegable > summary::-webkit-details-marker { display: none; }
+  .fundadora-desplegable > summary::after { content: "+"; font-size: var(--fs-xl); line-height: 1; color: var(--sky-300); }
+  .fundadora-desplegable[open] > summary::after { content: "–"; }
+  .fundadora-desplegable > summary:hover { background: rgb(var(--white-rgb) / .08); }
+  .fundadora-desplegable > summary:focus-visible { outline: none; box-shadow: var(--ring); }
+  .fundadora {
+      margin: var(--sp-8) 0 0; padding-top: var(--sp-8); border-top: 1px solid rgb(var(--white-rgb) / .18);
+      display: grid; grid-template-columns: 1fr 1.25fr; column-gap: var(--sp-16, 64px); row-gap: var(--sp-6);
+      grid-template-areas: "lema texto" "firma texto"; align-content: start;
+    }
+  .fundadora blockquote { display: contents; }
+  .fundadora .fundadora-lema { grid-area: lema; align-self: end; }
+  .fundadora .fundadora-texto { grid-area: texto; display: grid; gap: var(--sp-4); }
+  .fundadora figcaption { grid-area: firma; align-self: start; padding-left: var(--sp-4); border-left: 3px solid var(--sky-300); }
+  @media (max-width: 900px) {
+    .fundadora { grid-template-columns: 1fr; grid-template-areas: "lema" "texto" "firma"; }
+  }
+  .fundadora blockquote p { margin: 0; color: var(--muted-on-dark); font-size: var(--fs-lg); line-height: var(--lh-relaxed, 1.7); }
+  .fundadora .fundadora-lema { color: var(--white); font-size: var(--fs-3xl); font-weight: var(--fw-bold, 700); line-height: 1.2; }
+  .fundadora figcaption { display: grid; gap: 2px; }
+  .fundadora figcaption b { color: var(--white); font-size: var(--fs-lg); }
+  .fundadora figcaption span { color: var(--sky-300); font-size: var(--fs-sm); }
   /* ---------- Presupuesto ---------- */
   .presu {
       margin-top: var(--section); display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start;
