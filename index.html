@@ -548,7 +548,13 @@
         <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★<span class="off"></span></span>
         <q>Tenemos la suerte de llevar disfrutando de los servicios de MASSolis varios años. Un día llegas a casa y han movido y desenfundado el sofá. Otro han lavado las cortinas. Otro han aspirado los colchones… Y siempre manteniendo una limpieza impecable del resto de la casa. Es garantía de satisfacción y tranquilidad.</q>
         <div class="op-tags"><span>Puntualidad</span><span>Limpieza impecable</span><span>Trato amable</span><span>Buena comunicación</span></div>
+        <button type="button" class="op-fuente" aria-expanded="false" aria-controls="fuente-esther"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Opinión verificada · massolis.com</button>
         <div class="op-who"><span class="av" aria-hidden="true">EC</span><div><b>Esther C.</b><small>03MAS · Amplio Solución</small></div></div>
+        <div class="op-fuente-info" id="fuente-esther" hidden>
+          <button type="button" class="cerrar" aria-label="Cerrar">×</button>
+          Esther nos envió esta opinión el 10 de noviembre de 2026 desde el formulario de esta web. Antes de publicarla comprobamos que es clienta de MASSolis.
+          <br><a href="https://g.page/r/CbFre6DXdjFAEBM/review" target="_blank" rel="noopener">¿Eres cliente? Déjanos tu reseña en Google ↗</a>
+        </div>
       </article>
       <article class="op" data-ejemplo data-rating="5">
         <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★<span class="off"></span></span>
@@ -903,6 +909,26 @@
     const quitaEjemplo = () => { const ej = grid.querySelectorAll('.op[data-ejemplo]'); if (ej.length) ej[ej.length - 1].remove(); };
     guardadas.forEach(o => { grid.prepend(tarjeta(o)); quitaEjemplo(); });
     resumen();
+
+    // Origen de cada opinión real: al tocar «Opinión verificada» (o «Reseña de Google») se abre la explicación
+    const cierraFuentes = excepto => grid.querySelectorAll('.op-fuente-info:not([hidden])').forEach(i => {
+      if (i === excepto) return;
+      i.hidden = true;
+      const b = grid.querySelector('[aria-controls="' + i.id + '"]'); if (b) b.setAttribute('aria-expanded', 'false');
+    });
+    grid.addEventListener('click', e => {
+      const b = e.target.closest('button.op-fuente');
+      if (b) {
+        const info = document.getElementById(b.getAttribute('aria-controls'));
+        cierraFuentes(info);
+        info.hidden = !info.hidden; b.setAttribute('aria-expanded', String(!info.hidden));
+        if (!info.hidden) info.querySelector('.cerrar').focus();
+        return;
+      }
+      const x = e.target.closest('.op-fuente-info .cerrar');
+      if (x) { const info = x.closest('.op-fuente-info'); cierraFuentes(); const b2 = grid.querySelector('[aria-controls="' + info.id + '"]'); if (b2) b2.focus(); }
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') cierraFuentes(); });
 
     // Carrusel
     const puntos = document.getElementById('op-puntos');

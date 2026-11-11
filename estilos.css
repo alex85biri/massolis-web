@@ -516,6 +516,23 @@
   .op-who b { display: block; font-size: var(--fs-base); color: var(--navy-deep); }
   .op-who small { font-size: var(--fs-xs); color: var(--muted); }
   .op.mia { border: 2px dashed var(--sky-300); }
+  /* Origen de una opinión real: al tocarlo se explica de dónde viene (web o Google) */
+  .op-fuente {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+      border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--ice); color: var(--sky-ink);
+      font: inherit; font-size: var(--fs-2xs); font-weight: 700; cursor: pointer; text-decoration: none;
+    }
+  .op-fuente svg { width: 14px; height: 14px; flex: none; }
+  .op-fuente:hover { border-color: var(--line-strong); }
+  .op-fuente:focus-visible { outline: none; box-shadow: var(--ring); }
+  .op-fuente-info {
+      position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2; padding: 16px 18px;
+      border-radius: var(--r-md); background: var(--navy); color: var(--white); font-size: var(--fs-sm); line-height: 1.55;
+      box-shadow: var(--shadow-md);
+    }
+  .op-fuente-info[hidden] { display: none; }
+  .op-fuente-info a { color: var(--sky-200); font-weight: 700; }
+  .op-fuente-info .cerrar { position: absolute; top: 6px; right: 8px; border: 0; background: none; color: var(--muted-on-dark); font-size: 20px; line-height: 1; cursor: pointer; padding: 4px; }
   .op .badge-new {
       position: absolute; top: -10px; right: 18px; padding: 4px 10px; border-radius: var(--r-pill);
       font-size: var(--fs-2xs); font-weight: 700; background: var(--sky); color: var(--white);
