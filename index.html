@@ -25,8 +25,10 @@
 <meta name="twitter:description" content="Limpieza y desinfección de hogares en Sevilla con método propio y productos ecológicos. Planes de mantenimiento, Limpieza General y ozono. Presupuesto gratis.">
 <meta name="twitter:image" content="https://massolis.com/og-image.jpg">
 <!-- Iconos -->
-<link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <!-- Rendimiento: la foto de la portada se pide la primera -->
@@ -526,7 +528,9 @@
     </div>
   </section>
 
-  <!-- Opiniones de clientes (de ejemplo) + formulario -->
+  <!-- Opiniones de clientes + formulario. Las reales llevan data-real (comprobado que son de clientes) y van primero;
+       las de ejemplo (data-ejemplo) se quitan una por cada real que entra. -->
+
   <section class="block" id="opiniones">
     <div class="op-head">
       <div>
@@ -540,6 +544,12 @@
     </div>
     <div class="op-carrusel">
     <div class="op-grid" id="op-grid" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Opiniones de clientes">
+      <article class="op" data-real data-rating="5">
+        <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★<span class="off"></span></span>
+        <q>Tenemos la suerte de llevar disfrutando de los servicios de MASSolis varios años. Un día llegas a casa y han movido y desenfundado el sofá. Otro han lavado las cortinas. Otro han aspirado los colchones… Y siempre manteniendo una limpieza impecable del resto de la casa. Es garantía de satisfacción y tranquilidad.</q>
+        <div class="op-tags"><span>Puntualidad</span><span>Limpieza impecable</span><span>Trato amable</span><span>Buena comunicación</span></div>
+        <div class="op-who"><span class="av" aria-hidden="true">EC</span><div><b>Esther C.</b><small>03MAS · Amplio Solución</small></div></div>
+      </article>
       <article class="op" data-ejemplo data-rating="5">
         <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★<span class="off"></span></span>
         <q>Llegar a casa y encontrarla así no tiene precio. Me dejaron la ropa ordenada por colores y el colchón olía a limpio.</q>
@@ -569,12 +579,6 @@
         <q>Lo que más me gusta es el detalle extra de cada visita: un día los grifos sin cal, otro el lavavajillas vacío.</q>
         <div class="op-tags"><span>Trato amable</span><span>Puntualidad</span></div>
         <div class="op-who"><span class="av" aria-hidden="true">ES</span><div><b>Elena S.</b><small>01M · Mantenimiento</small></div></div>
-      </article>
-      <article class="op" data-ejemplo data-rating="5">
-        <span class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★<span class="off"></span></span>
-        <q>Se nota que tienen un método. Empiezan por lo que más cuesta y nunca se dejan una esquina.</q>
-        <div class="op-tags"><span>Limpieza impecable</span></div>
-        <div class="op-who"><span class="av" aria-hidden="true">MF</span><div><b>Marta F.</b><small>03MAS · Amplio Solución</small></div></div>
       </article>
     </div>
     <div class="op-nav">
