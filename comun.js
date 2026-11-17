@@ -6,6 +6,23 @@
   // (código en _servicio-presupuesto/Codigo.gs). La portada usa la misma dirección para las opiniones (script de index.html).
   const ENVIO_PRESUPUESTOS = 'https://script.google.com/macros/s/AKfycbwiZe72M6XBN9bN_XOy8Alh6etMBYKDu5Sxz1XNWWkeIf62L0nBWdMdjhQ2XWaYp-hsJg/exec';
 
+  // Al recargar (o volver atrás), Chrome dejaba la página unos píxeles más abajo: calcula la posición antes de que
+  // carguen las letras y la cabecera cambia de alto. Guardamos nosotros la posición y la ponemos con la página ya montada.
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+    const CLAVE_POS = 'massolis-posicion:' + location.pathname;
+    addEventListener('pagehide', () => { try { sessionStorage.setItem(CLAVE_POS, String(Math.round(scrollY))); } catch (e) {} });
+    const tipo = (performance.getEntriesByType('navigation')[0] || {}).type;
+    if ((tipo === 'reload' || tipo === 'back_forward') && !location.hash) {
+      let guardada = null; try { guardada = sessionStorage.getItem(CLAVE_POS); } catch (e) {}
+      const y = guardada === null ? 0 : +guardada;
+      const coloca = () => scrollTo({ top: y, behavior: 'instant' });
+      coloca();
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(coloca);
+      addEventListener('load', coloca, { once: true });
+    }
+  }
+
   const bar = document.querySelector('.top-bar');
   const onScroll = () => bar.classList.toggle('scrolled', scrollY > 8);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
