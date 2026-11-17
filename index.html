@@ -240,7 +240,7 @@
 }
 </script>
 <link rel="preload" href="fonts/PlusJakartaSans-variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="estilos.css?v=2026-11-17c">
 </head>
 <body>
 <!-- Estrella del logo (para los destellos de la portada) -->
@@ -263,7 +263,15 @@
       </a>
 
       <nav class="nav" aria-label="Principal">
-        <a href="#servicios">Planes</a>
+        <div class="nav-grupo">
+          <button type="button" class="nav-btn" aria-expanded="false" aria-controls="menu-servicios">Servicios <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="nav-sub" id="menu-servicios">
+            <a href="limpieza-de-casas-sevilla.html"><b>Limpieza de casas</b><small>Planes M, MA, MAS y MASS</small></a>
+            <a href="limpieza-general-sevilla.html"><b>Limpieza General</b><small>Primera vez o casa nueva</small></a>
+            <a href="desinfeccion-ozono-sevilla.html"><b>Desinfección con ozono</b><small>Por fricción u ozono</small></a>
+            <a class="nav-sub-todos" href="#servicios">Ver todos los planes</a>
+          </div>
+        </div>
         <a href="#metodo">Método</a>
         <a href="#opiniones">Opiniones</a>
         <a href="#nosotros">Sobre nosotros</a>
@@ -416,6 +424,7 @@
             <li>Techos, paredes e interior de los muebles</li>
             <li>Siempre con nuestros profesionales</li>
           </ul>
+          <p class="plan-mas"><a href="limpieza-general-sevilla.html">Ver todo lo que incluye</a></p>
           <div class="plan-cta"><a class="btn btn-light btn-lg" href="#contacto" data-plan="LG">Pide tu Limpieza General <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
         </div>
       </article>
@@ -645,26 +654,48 @@
   </section>
 
 </main>
-  <footer>
-    <a class="brand" href="#inicio">
-      <svg class="logo logo-foot" viewBox="-12 -14 676 296" aria-hidden="true"><use class="logo-inf" href="#infinito"/><circle class="logo-glow" cx="483" cy="63" r="80" fill="url(#brillo)"/><g class="logo-star"><use href="#estrella"/></g></svg>
-      <div>
-        <div class="brand-name">MAS<span>Solis</span></div>
-        <div class="brand-tag">Solución sostenible</div>
+  <footer class="pie">
+    <div class="pie-arriba">
+      <div class="pie-marca">
+        <a class="brand" href="#inicio">
+          <svg class="logo logo-foot" viewBox="-12 -14 676 296" aria-hidden="true"><use class="logo-inf" href="#infinito"/><circle class="logo-glow" cx="483" cy="63" r="80" fill="url(#brillo)"/><g class="logo-star"><use href="#estrella"/></g></svg>
+          <div>
+            <div class="brand-name">MAS<span>Solis</span></div>
+            <div class="brand-tag">Solución sostenible</div>
+          </div>
+        </a>
+        <p>Limpieza y desinfección de hogares en Sevilla, con un método propio y productos sostenibles.</p>
       </div>
-    </a>
-    <span>© 2026 MASSolis · Limpieza y desinfección en Sevilla</span>
-    <a class="pie-red" href="https://www.instagram.com/massolis.sevilla/" rel="me noopener" target="_blank">
-      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      <span>Síguenos en Instagram<span class="sr-only"> (@massolis.sevilla, se abre en otra pestaña)</span></span>
-    </a>
-    <nav class="pie-legal" aria-label="Información legal">
-      <a href="aviso-legal.html">Aviso legal</a>
-      <a href="privacidad.html">Política de privacidad</a>
-      <a href="cookies.html">Política de cookies</a>
-    </nav>
+      <nav class="pie-col" aria-label="Servicios">
+        <p class="pie-t">Servicios</p>
+        <a href="limpieza-de-casas-sevilla.html">Limpieza de casas</a>
+        <a href="limpieza-general-sevilla.html">Limpieza General</a>
+        <a href="desinfeccion-ozono-sevilla.html">Desinfección con ozono</a>
+        <a href="#servicios">Todos los planes</a>
+      </nav>
+      <nav class="pie-col" aria-label="MASSolis">
+        <p class="pie-t">MASSolis</p>
+        <a href="#metodo">Método MASS</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#nosotros">Sobre nosotros</a>
+        <a href="#faq">Preguntas</a>
+      </nav>
+      <a class="pie-insta on-dark" href="https://www.instagram.com/massolis.sevilla/" rel="me noopener" target="_blank">
+        <span class="pie-insta-ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+        <span class="pie-insta-txt"><span class="kicker">Síguenos en Instagram</span><b>@massolis.sevilla</b><span>Nuestro trabajo, antes y después, y novedades.</span></span>
+        <span class="btn btn-light">Ver Instagram <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span class="sr-only"> (se abre en otra pestaña)</span></span>
+      </a>
+    </div>
+    <div class="pie-abajo">
+      <span>© 2026 MASSolis · Limpieza y desinfección en Sevilla</span>
+      <nav class="pie-legal" aria-label="Información legal">
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="cookies.html">Política de cookies</a>
+      </nav>
+    </div>
     <p class="firma">Web diseñada y desarrollada por <a href="https://marian-portfolio-mu.vercel.app/" rel="author">Marian López Solís</a> · <a href="https://www.linkedin.com/in/marian-lopez-solis-a15707389" rel="me noopener">LinkedIn<span class="sr-only"> de Marian López Solís</span></a></p>
-</footer>
+  </footer>
 </div>
 
 <!-- Opinión: ventana emergente con el formulario de opiniones -->
@@ -716,122 +747,10 @@
 </dialog>
 
 <!-- Presupuesto: ventana emergente con el formulario (se abre con cualquier botón de presupuesto) -->
-<dialog class="presu-dialogo" id="presu-dialogo" aria-labelledby="presu-dlg-t">
-  <div class="dlg-cabecera">
-    <div>
-      <p class="kicker">Presupuesto gratis</p>
-      <h2 id="presu-dlg-t">Pide tu <em>presupuesto</em></h2>
-    </div>
-    <button type="button" class="btn-icon dlg-cerrar" data-cerrar-presu aria-label="Cerrar">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-    </button>
-  </div>
-  <form class="presu-form" id="presu-form" method="dialog" novalidate>
-    <!-- Campo trampa contra robots: las personas no lo ven ni lo rellenan -->
-    <div class="sr-only" aria-hidden="true"><label>No rellenar <input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
-    <fieldset class="grupo">
-      <legend>¿Qué necesitas?</legend>
-      <div class="opciones">
-          <label class="opcion"><input type="radio" name="plan" value="01M"><span class="op-cod">M</span><span class="op-txt"><b>Mantenimiento</b><small>2–3 h</small></span></label>
-          <label class="opcion"><input type="radio" name="plan" value="02MA"><span class="op-cod">MA</span><span class="op-txt"><b>Mantenimiento Amplio</b><small>3–4 h</small></span></label>
-          <label class="opcion"><input type="radio" name="plan" value="03MAS"><span class="op-cod">MAS</span><span class="op-txt"><b>Amplio Solución</b><small>4–5 h</small></span></label>
-          <label class="opcion"><input type="radio" name="plan" value="04MASS"><span class="op-cod">MASS</span><span class="op-txt"><b>Amplio Solución Sostenible</b><small>5–6 h</small></span></label>
-          <label class="opcion"><input type="radio" name="plan" value="LG"><span class="op-cod">LG</span><span class="op-txt"><b>Limpieza General</b><small>Primera vez o casa nueva</small></span></label>
-          <label class="opcion"><input type="radio" name="plan" value="DES"><span class="op-cod">✚</span><span class="op-txt"><b>Desinfección</b><small>Fricción u ozono</small></span></label>
-          <label class="opcion"><input type="radio" name="plan" value="NS" checked><span class="op-cod">?</span><span class="op-txt"><b>Aún no lo sé</b><small>Asesoradme</small></span></label>
-      </div>
-    </fieldset>
-
-    <fieldset class="grupo">
-      <legend>Tipo de vivienda</legend>
-      <div class="pills">
-          <label class="pill"><input type="radio" name="vivienda" value="Piso" checked><span>Piso</span></label>
-          <label class="pill"><input type="radio" name="vivienda" value="Casa o chalet"><span>Casa o chalet</span></label>
-          <label class="pill"><input type="radio" name="vivienda" value="Ático o dúplex"><span>Ático o dúplex</span></label>
-          <label class="pill"><input type="radio" name="vivienda" value="Estudio"><span>Estudio</span></label>
-          <label class="pill"><input type="radio" name="vivienda" value="Otra"><span>Otra</span></label>
-          <label class="pill"><input type="radio" name="vivienda" value="Aún no lo sé"><span>Aún no lo sé</span></label>
-      </div>
-    </fieldset>
-
-    <div class="fila2">
-      <div>
-        <label class="etq" for="pr-metros">Metros aproximados</label>
-        <select class="field" id="pr-metros" name="metros">
-          <option>Menos de 60 m²</option><option selected>60–90 m²</option><option>90–120 m²</option>
-          <option>120–180 m²</option><option>Más de 180 m²</option><option>No lo sé</option>
-        </select>
-      </div>
-      <div>
-        <label class="etq" for="pr-frecuencia">Frecuencia</label>
-        <select class="field" id="pr-frecuencia" name="frecuencia">
-          <option>Una sola vez</option><option>Semanal</option><option selected>Quincenal</option>
-          <option>Mensual</option><option>Aún no lo sé</option>
-        </select>
-      </div>
-    </div>
-
-    <fieldset class="grupo">
-      <legend>Extras <span class="opc">(opcional)</span></legend>
-      <div class="pills">
-          <label class="pill"><input type="checkbox" name="extras" value="Plancha"><span>Plancha</span></label>
-          <label class="pill"><input type="checkbox" name="extras" value="Patio o balcón"><span>Patio o balcón</span></label>
-          <label class="pill"><input type="checkbox" name="extras" value="Plantas exteriores"><span>Plantas exteriores</span></label>
-          <label class="pill"><input type="checkbox" name="extras" value="Desinfección con ozono"><span>Desinfección con ozono</span></label>
-      </div>
-    </fieldset>
-
-    <div class="fila2">
-      <div>
-        <label class="etq" for="pr-nombre">Nombre *</label>
-        <input class="field" id="pr-nombre" name="nombre" type="text" autocomplete="name" required aria-required="true" maxlength="60">
-      </div>
-      <div>
-        <label class="etq" for="pr-cp">Código postal o localidad</label>
-        <input class="field" id="pr-cp" name="localidad" type="text" autocomplete="postal-code" maxlength="60">
-      </div>
-      <div>
-        <label class="etq" for="pr-tel">Teléfono</label>
-        <input class="field" id="pr-tel" name="telefono" type="tel" aria-describedby="ayuda-contacto" autocomplete="tel" inputmode="tel" maxlength="20">
-      </div>
-      <div>
-        <label class="etq" for="pr-email">Correo</label>
-        <input class="field" id="pr-email" name="email" type="email" aria-describedby="ayuda-contacto" autocomplete="email" maxlength="80">
-      </div>
-    </div>
-    <p class="ayuda" id="ayuda-contacto">Déjanos al menos un teléfono o un correo para responderte.</p>
-
-    <div>
-      <label class="etq" for="pr-msg">¿Algo más que debamos saber? <span class="opc">(opcional)</span></label>
-      <textarea class="field" id="pr-msg" name="mensaje" maxlength="800" placeholder="Mascotas, horario preferido, zonas que más te preocupan…"></textarea>
-    </div>
-
-    <label class="check privacidad"><input type="checkbox" name="privacidad" required> <span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto que MASSolis use estos datos solo para responder a mi solicitud de presupuesto.</span></label>
-
-    <div class="presu-enviar">
-      <button class="btn btn-lg" type="submit">Pedir presupuesto <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></button>
-      <p class="presu-msg" id="presu-msg" role="status" aria-live="polite"></p>
-    </div>
-  </form>
-</dialog>
+<!-- La ventana de presupuesto la crea comun.js (es la misma en todas las páginas) -->
 
 <script>
 (() => {
-  const bar = document.querySelector('.top-bar');
-  const onScroll = () => bar.classList.toggle('scrolled', scrollY > 8);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // Menú del móvil ("top" no se puede usar como nombre: choca con window.top)
-  const cabecera = document.querySelector('.top');
-  const menuBtn = document.querySelector('.menu-btn');
-  menuBtn.addEventListener('click', () => {
-    const open = cabecera.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', open);
-  });
-  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => {
-    cabecera.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }));
   // Sección del símbolo: dibuja el infinito con el destello al llegar a ella
   const eco = document.querySelector('.eco');
   if (eco) {
@@ -856,15 +775,6 @@
       logoEco.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); animar(); } });
     }
   }
-  // Frecuencia del mantenimiento (solo informativo)
-  document.querySelectorAll('.freq').forEach(grupo => {
-    const nota = grupo.nextElementSibling;
-    grupo.addEventListener('click', e => {
-      const b = e.target.closest('button'); if (!b) return;
-      grupo.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-      nota.textContent = b.dataset.nota;
-    });
-  });
   // Servicio que envía las solicitudes de presupuesto y las opiniones nuevas a adm@massolis.com: Google Apps Script en la cuenta adm@massolis.com
   // (código en _servicio-presupuesto/Codigo.gs). Si fallara, se ofrece escribir directamente a adm@massolis.com.
   const ENVIO_PRESUPUESTOS = 'https://script.google.com/macros/s/AKfycbwiZe72M6XBN9bN_XOy8Alh6etMBYKDu5Sxz1XNWWkeIf62L0nBWdMdjhQ2XWaYp-hsJg/exec';
@@ -1069,74 +979,6 @@
     addEventListener('resize', () => { clearTimeout(window.__pasosRs); window.__pasosRs = setTimeout(pintaP, 150); });
     (window.requestIdleCallback || setTimeout)(pintaP);
   }
-  // ---------- Presupuesto ----------
-  const presu = document.getElementById('presu-form');
-  if (presu) {
-    // Ventana emergente: se abre con cualquier botón de presupuesto (y deja marcado el plan si viene de uno)
-    const dlg = document.getElementById('presu-dialogo');
-    const abrir = plan => {
-      if (plan) { const r = presu.querySelector('input[name="plan"][value="' + plan + '"]'); if (r) r.checked = true; }
-      document.getElementById('presu-msg').textContent = '';
-      document.documentElement.classList.add('dlg-abierto');
-      dlg.showModal();
-      dlg.scrollTop = 0;
-    };
-    const cerrar = () => dlg.close();
-    dlg.addEventListener('close', () => document.documentElement.classList.remove('dlg-abierto'));
-    dlg.addEventListener('click', e => { if (e.target === dlg) cerrar(); });          // pulsar fuera cierra
-    dlg.querySelector('[data-cerrar-presu]').addEventListener('click', cerrar);
-    document.addEventListener('click', e => {
-      const a = e.target.closest('a[href="#contacto"], [data-abrir-presu]');
-      if (!a || dlg.contains(a)) return;
-      e.preventDefault();
-      abrir(a.dataset.plan);
-    });
-    if (location.hash === '#presupuesto') abrir();
-    const msg = document.getElementById('presu-msg');
-    const nombres = { '01M': '01M · Mantenimiento', '02MA': '02MA · Mantenimiento Amplio', '03MAS': '03MAS · Amplio Solución',
-      '04MASS': '04MASS · Amplio Solución Sostenible', 'LG': 'LG · Limpieza General', 'DES': 'Desinfección', 'NS': 'Aún no lo sé (asesoradme)' };
-    presu.addEventListener('submit', async e => {
-      e.preventDefault();
-      presu.querySelectorAll('.invalido').forEach(x => { x.classList.remove('invalido'); x.removeAttribute('aria-invalid'); });
-      const d = new FormData(presu);
-      const v = k => (d.get(k) || '').toString().trim();
-      const errores = [];
-      const marca = el => { el.classList.add('invalido'); el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', 'presu-msg'); };
-      if (!v('nombre')) { errores.push('tu nombre'); marca(presu.querySelector('#pr-nombre')); }
-      const email = v('email'), tel = v('telefono');
-      if (!email && !tel) { errores.push('un teléfono o un correo'); marca(presu.querySelector('#pr-tel')); marca(presu.querySelector('#pr-email')); }
-      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { errores.push('un correo válido'); marca(presu.querySelector('#pr-email')); }
-      if (!d.get('privacidad')) { errores.push('aceptar el uso de tus datos'); marca(presu.querySelector('.privacidad input')); presu.querySelector('.privacidad').classList.add('invalido'); }
-      if (errores.length) { msg.className = 'presu-msg err'; msg.textContent = 'Falta ' + errores.join(', ') + '.'; presu.querySelector('[aria-invalid="true"]').focus(); return; }
-
-      const datos = {
-        'Servicio': nombres[v('plan')] || v('plan'), 'Vivienda': v('vivienda'), 'Metros': v('metros'), 'Frecuencia': v('frecuencia'),
-        'Extras': d.getAll('extras').join(', ') || '—', 'Nombre': v('nombre'), 'Teléfono': tel || '—', 'Correo': email || '—',
-        'Localidad': v('localidad') || '—', 'Mensaje': v('mensaje') || '—'
-      };
-      const asunto = 'Solicitud de presupuesto · ' + datos['Servicio'] + ' · ' + datos['Nombre'];
-      const boton = presu.querySelector('button[type="submit"]');
-      boton.disabled = true; msg.className = 'presu-msg'; msg.textContent = 'Enviando…';
-      try {
-        // Sin cabecera Content-Type (va como texto): Google no acepta la consulta previa del navegador
-        const r = await fetch(ENVIO_PRESUPUESTOS, {
-          method: 'POST',
-          body: JSON.stringify({
-            plan: v('plan'), vivienda: v('vivienda'), metros: v('metros'), frecuencia: v('frecuencia'), extras: d.getAll('extras'),
-            nombre: v('nombre'), telefono: tel, email: email, localidad: v('localidad'), mensaje: v('mensaje'),
-            privacidad: !!d.get('privacidad'), web: v('web')
-          })
-        });
-        const res = await r.json();
-        if (!r.ok || !res.ok) throw new Error(res.error || r.status);
-        presu.reset(); msg.textContent = '¡Gracias, ' + datos['Nombre'].split(' ')[0] + '! Hemos recibido tu solicitud y te responderemos muy pronto.';
-      } catch (err) {
-        msg.className = 'presu-msg err';
-        msg.innerHTML = 'No se ha podido enviar. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:adm@massolis.com?subject=' +
-          encodeURIComponent(asunto) + '">adm@massolis.com</a>.';
-      } finally { boton.disabled = false; }
-    });
-  }
   // Ventana de opiniones
   const dlgOp = document.getElementById('op-dialogo');
   if (dlgOp) {
@@ -1149,9 +991,9 @@
     dlgOp.querySelector('[data-cerrar-opinion]').addEventListener('click', () => dlgOp.close());
   }
   // Un enlace interno dentro de una ventana la cierra antes de ir a su sección
-  document.querySelectorAll('dialog a[href^="#"]').forEach(a => a.addEventListener('click', () => a.closest('dialog').close()));
 })();
 </script>
+<script src="comun.js?v=2026-11-17" defer></script>
 <script src="enlaces.js" defer></script>
 </body>
 </html>

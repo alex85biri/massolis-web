@@ -766,7 +766,7 @@
       background:
         /* Degradado azul marino en píxeles: la columna de texto queda siempre bien oscura, sea cual sea el ancho */
         linear-gradient(90deg, rgb(var(--deep-rgb) / .9) 0, rgb(var(--deep-rgb) / .82) 460px, rgb(var(--deep-rgb) / .5) 720px, rgb(var(--deep-rgb) / 0) 960px),
-        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000") center / cover no-repeat,
+        var(--hero-foto, url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000")) center / cover no-repeat,
         var(--navy);
     }
   /* Texto claro sobre la foto (solo en pantallas anchas) */
@@ -1060,6 +1060,86 @@
   .pie-legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
   .pie-legal a:hover, .pie-legal a[aria-current="page"] { color: var(--navy); }
   .legal-tabla-wrap:focus-visible { outline: none; box-shadow: var(--ring); }
+  /* ---------- Menú «Servicios» de la cabecera (todas las páginas con la cabecera de la portada) ---------- */
+  .nav { align-items: center; }
+  .nav-grupo { position: relative; }
+  .nav-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 0; border: 0; background: none; font: inherit; color: var(--text); cursor: pointer; }
+  .nav-btn svg { transition: transform var(--dur); }
+  .nav-grupo.abierto .nav-btn svg { transform: rotate(180deg); }
+  .nav-btn:focus-visible { outline: none; border-radius: var(--r-xs); box-shadow: var(--ring); }
+  .nav-sub { display: none; position: absolute; left: -18px; top: calc(100% + 14px); z-index: 60; width: 300px; padding: 8px; border-radius: var(--r-md); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-lg); }
+  .nav-grupo.abierto .nav-sub { display: grid; gap: 2px; }
+  .nav .nav-sub a { display: block; padding: 10px 12px; border-radius: var(--r-sm); white-space: normal; }
+  .nav .nav-sub a::after { display: none; }
+  .nav .nav-sub a:hover, .nav .nav-sub a[aria-current="page"] { background: var(--ice); }
+  .nav-sub b { display: block; color: var(--navy-deep); font-size: var(--fs-md); }
+  .nav-sub small { display: block; margin-top: 2px; color: var(--muted); font-size: var(--fs-sm); font-weight: 500; }
+  .nav .nav-sub .nav-sub-todos { margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--line); border-radius: 0 0 var(--r-sm) var(--r-sm); color: var(--sky-ink); font-weight: 600; font-size: var(--fs-sm); }
+  .nav a[aria-current="page"]::after { transform: scaleX(1); }
+  /* ---------- Páginas de servicio (casas, Limpieza General, ozono) ----------
+     Misma cabecera, pie, ventana de presupuesto y piezas que la portada; aquí solo lo que tienen de propio. */
+  /* Migas de pan: dentro de la foto de arriba, discretas, sobre el título */
+  .migas { margin-bottom: 22px; font-size: var(--fs-sm); color: rgb(var(--white-rgb) / .72); }
+  .migas ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .migas li + li::before { content: "›"; margin-right: 6px; }
+  .migas a { color: rgb(var(--white-rgb) / .9); text-decoration: underline; text-underline-offset: 3px; }
+  .migas a:hover { color: var(--white); }
+  .migas a:focus-visible { outline: none; border-radius: var(--r-xs); box-shadow: var(--ring); }
+  .hero--servicio { min-height: max(480px, calc(78svh - 110px)); }
+  .plan:not(.dark) .checks li::before { background-color: var(--ice); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233B6FD8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E"); }
+  .plan .plan-cta { margin-top: auto; padding-top: 22px; }
+  .antes-despues { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .antes-despues figure { margin: 0; position: relative; border-radius: var(--r-md); overflow: hidden; background: var(--ice); }
+  .antes-despues img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .antes-despues figcaption { position: absolute; left: 10px; top: 10px; padding: 4px 12px; border-radius: var(--r-pill); background: var(--white); color: var(--navy-deep); font-size: var(--fs-2xs); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .antes-despues figure + figure figcaption { background: var(--star); }
+  .antes-despues--ancho { max-width: 900px; margin: 40px auto 0; }
+  .nota-foto { margin-top: 10px; font-size: var(--fs-sm); color: var(--muted); }
+  .center + .nota-foto, .antes-despues--ancho + .nota-foto { text-align: center; }
+  a.card { display: block; color: inherit; }
+  .card-enlace { display: flex !important; flex-direction: column; }
+  .card-enlace .arr { margin-top: 18px; color: var(--navy); transition: transform .2s; }
+  .card-enlace:hover .arr { transform: rotate(45deg); }
+  .card-enlace .kicker { margin: 0; }
+  .card-enlace h3 { margin-top: 10px; }
+  /* ---------- Pie en columnas (portada y páginas de servicio, 17 nov 2026) ---------- */
+  footer.pie { display: block; margin-top: 64px; padding-top: 44px; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--fs-sm); }
+  .pie-arriba { display: grid; grid-template-columns: 1.25fr .75fr .75fr 1.6fr; gap: 32px; align-items: start; }
+  .pie-marca p { margin-top: 14px; max-width: 300px; font-size: var(--fs-md); line-height: 1.55; color: var(--muted); }
+  .pie-col { display: grid; gap: 10px; align-content: start; }
+  .pie-t { margin-bottom: 4px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--navy-deep); }
+  .pie-col a { color: var(--text); font-size: var(--fs-md); }
+  .pie-col a:hover { color: var(--sky-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .pie-col a[aria-current="page"] { color: var(--sky-ink); font-weight: 600; }
+  .pie-col a:focus-visible { outline: none; border-radius: var(--r-xs); box-shadow: var(--ring); }
+  /* Instagram, destacado: tarjeta azul marino con su botón */
+  .pie-insta { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; padding: 24px; border-radius: var(--r-lg); background: var(--navy); color: var(--white); text-decoration: none; transition: transform var(--dur), box-shadow var(--dur); }
+  .pie-insta::after { content: ""; position: absolute; right: -90px; top: -110px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgb(var(--sky-rgb) / .5), transparent 70%); }
+  .pie-insta > * { position: relative; z-index: 1; }
+  .pie-insta:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .pie-insta:focus-visible { outline: none; box-shadow: var(--ring); }
+  .pie-insta-ico { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 18px; background: rgb(var(--white-rgb) / .12); border: 1px solid rgb(var(--white-rgb) / .2); color: var(--white); }
+  .pie-insta-ico svg { width: 30px; height: 30px; }
+  .pie-insta-txt { display: grid; gap: 4px; }
+  .pie-insta .kicker { color: var(--sky-200); }
+  .pie-insta b { font-size: var(--fs-xl); color: var(--white); letter-spacing: -.01em; }
+  .pie-insta-txt > span:last-child { font-size: var(--fs-sm); line-height: 1.45; color: rgb(var(--white-rgb) / .78); }
+  .pie-insta .btn { grid-column: 1 / -1; justify-self: start; }
+  .pie-insta:hover .arrow { transform: rotate(45deg); }
+  .pie-abajo { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; }
+  footer.pie .firma { margin-top: 12px; padding-top: 0; border-top: 0; }
+  /* Portada: enlace de la tarjeta de Limpieza General a su página */
+  .plan-mas { margin-top: 14px; font-size: var(--fs-md); }
+  .plan-mas a { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+  .on-dark .plan-mas a { color: var(--sky-200); }
+  .on-dark .plan-mas a:hover { color: var(--white); }
+  @media (max-width: 640px) {
+    .legal ol.serv-pasos, .serv-mas { grid-template-columns: 1fr; }
+    .serv-plan { grid-template-columns: 1fr; }
+    .serv-plan .code-badge { grid-row: auto; justify-self: start; }
+    .serv-portada { aspect-ratio: 4 / 3; }
+    .serv-plus { padding: 22px 20px; }
+  }
 }
 
 /* =====================================================================
@@ -1118,7 +1198,7 @@
       .hero {
         background:
           linear-gradient(90deg, rgb(var(--deep-rgb) / .9) 0, rgb(var(--deep-rgb) / .82) 640px, rgb(var(--deep-rgb) / .5) 980px, rgb(var(--deep-rgb) / 0) 1300px),
-          url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2800") center / cover no-repeat,
+          var(--hero-foto-xl, url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2800")) center / cover no-repeat,
           var(--navy);
       }
     }
@@ -1157,7 +1237,7 @@
         content: ""; position: absolute; left: 0; right: 0; top: 0; height: var(--foto-h, 520px); z-index: 0;
         background:
           linear-gradient(180deg, rgb(var(--deep-rgb) / 0) 15%, rgb(var(--deep-rgb) / .78) 38%, rgb(var(--deep-rgb) / .93) 60%, var(--navy-deep) 85%),
-          url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1100") 30% center / cover no-repeat;
+          var(--hero-foto-movil, url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1100")) 30% center / cover no-repeat;
       }
       .hero-inner { padding: 220px 22px 28px; }
       .lead { font-size: var(--fs-lg); }
@@ -1266,5 +1346,33 @@
     .legal-datos { grid-template-columns: 1fr; gap: 2px; }
     .legal-datos dd { margin-bottom: 10px; }
     .legal-top .btn { height: 40px; padding: 0 16px; }
+  }
+
+  /* Menú «Servicios» dentro del menú del móvil y de pantallas medianas */
+  @media (max-width: 1060px) {
+    .nav { align-items: stretch; }
+    .nav-grupo { width: 100%; }
+    .nav-btn { width: 100%; justify-content: space-between; padding: 14px 6px; border-top: 1px solid var(--line); }
+    .nav-sub { position: static; width: auto; padding: 0 0 8px 10px; border: 0; box-shadow: none; background: none; }
+    .nav .nav-sub a { border-top: 0; padding: 10px 8px; }
+    .nav .nav-sub .nav-sub-todos { border-top: 0; padding-top: 10px; margin-top: 0; }
+  }
+  @media (max-width: 900px) {
+    .hero--servicio { min-height: 0; }
+  }
+  /* Pie: en pantallas medianas y móvil, Instagram justo debajo de la marca y los enlaces en dos columnas */
+  @media (max-width: 1060px) {
+    .pie-arriba { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+    .pie-marca, .pie-insta { grid-column: 1 / -1; }
+    .pie-insta { order: 1; }
+    .pie-col { order: 2; }
+  }
+  @media (max-width: 480px) {
+    .pie-insta { padding: 20px; }
+    .pie-insta .btn { justify-self: stretch; justify-content: space-between; }
+    .pie-abajo { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .antes-despues { gap: 6px; }
   }
 }
