@@ -1085,7 +1085,6 @@
   .migas a { color: rgb(var(--white-rgb) / .9); text-decoration: underline; text-underline-offset: 3px; }
   .migas a:hover { color: var(--white); }
   .migas a:focus-visible { outline: none; border-radius: var(--r-xs); box-shadow: var(--ring); }
-  .hero--servicio { min-height: max(480px, calc(78svh - 110px)); }
   .plan:not(.dark) .checks li::before { background-color: var(--ice); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233B6FD8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E"); }
   .plan .plan-cta { margin-top: auto; padding-top: 22px; }
   .antes-despues { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1356,9 +1355,6 @@
     .nav-sub { position: static; width: auto; padding: 0 0 8px 10px; border: 0; box-shadow: none; background: none; }
     .nav .nav-sub a { border-top: 0; padding: 10px 8px; }
     .nav .nav-sub .nav-sub-todos { border-top: 0; padding-top: 10px; margin-top: 0; }
-  }
-  @media (max-width: 900px) {
-    .hero--servicio { min-height: 0; }
   }
   /* Pie: en pantallas medianas y móvil, Instagram justo debajo de la marca y los enlaces en dos columnas */
   @media (max-width: 1060px) {
