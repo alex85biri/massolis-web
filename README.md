@@ -7,7 +7,7 @@ Web de MASSolis, empresa de limpieza y desinfección de hogares en Sevilla.
 
 ## Historia
 
-Rediseño iniciado en junio de 2026 a partir de una versión anterior de la web. Publicada el 8 de noviembre de 2026.
+Diseño y prototipos desde junio de 2026, de Marian López Solís y Gustavo Tapia. Primera versión y sistema de diseño de Marian; publicación con dominio propio y ampliación (formulario, posicionamiento y opiniones verificadas) de Gustavo, desde el 8 de noviembre de 2026.
 
 ## Tecnología
 
