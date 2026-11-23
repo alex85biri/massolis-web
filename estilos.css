@@ -1087,6 +1087,7 @@
   .migas a:focus-visible { outline: none; border-radius: var(--r-xs); box-shadow: var(--ring); }
   .plan:not(.dark) .checks li::before { background-color: var(--ice); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233B6FD8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E"); }
   .plan .plan-cta { margin-top: auto; padding-top: 22px; }
+  .plan-body > .code-badge { align-self: flex-start; margin-bottom: 14px; }
   .antes-despues { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .antes-despues figure { margin: 0; position: relative; border-radius: var(--r-md); overflow: hidden; background: var(--ice); }
   .antes-despues img { width: 100%; height: 100%; object-fit: cover; display: block; }
