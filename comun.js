@@ -132,8 +132,8 @@
         <input class="field" id="pr-nombre" name="nombre" type="text" autocomplete="name" required aria-required="true" maxlength="60">
       </div>
       <div>
-        <label class="etq" for="pr-cp">Código postal o localidad</label>
-        <input class="field" id="pr-cp" name="localidad" type="text" autocomplete="postal-code" maxlength="60">
+        <label class="etq" for="pr-dir">Dirección completa de la limpieza *</label>
+        <input class="field" id="pr-dir" name="direccion" type="text" autocomplete="street-address" required aria-required="true" maxlength="160" placeholder="Calle, número, piso, puerta y código postal">
       </div>
       <div>
         <label class="etq" for="pr-tel">Teléfono</label>
@@ -196,6 +196,9 @@
       const errores = [];
       const marca = el => { el.classList.add('invalido'); el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', 'presu-msg'); };
       if (!v('nombre')) { errores.push('tu nombre'); marca(presu.querySelector('#pr-nombre')); }
+      // Dirección completa obligatoria (pedido del usuario, 26 nov 2026): con al menos un número (portal o código postal)
+      const dir = v('direccion');
+      if (dir.length < 8 || !/\d/.test(dir)) { errores.push('la dirección completa de la limpieza (calle, número, piso y código postal)'); marca(presu.querySelector('#pr-dir')); }
       const email = v('email'), tel = v('telefono');
       if (!email && !tel) { errores.push('un teléfono o un correo'); marca(presu.querySelector('#pr-tel')); marca(presu.querySelector('#pr-email')); }
       if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { errores.push('un correo válido'); marca(presu.querySelector('#pr-email')); }
@@ -205,7 +208,7 @@
       const datos = {
         'Servicio': nombres[v('plan')] || v('plan'), 'Vivienda': v('vivienda'), 'Metros': v('metros'), 'Frecuencia': v('frecuencia'),
         'Extras': d.getAll('extras').join(', ') || '—', 'Nombre': v('nombre'), 'Teléfono': tel || '—', 'Correo': email || '—',
-        'Localidad': v('localidad') || '—', 'Mensaje': v('mensaje') || '—'
+        'Dirección': dir, 'Mensaje': v('mensaje') || '—'
       };
       const asunto = 'Solicitud de presupuesto · ' + datos['Servicio'] + ' · ' + datos['Nombre'];
       const boton = presu.querySelector('button[type="submit"]');
@@ -216,7 +219,7 @@
           method: 'POST',
           body: JSON.stringify({
             plan: v('plan'), vivienda: v('vivienda'), metros: v('metros'), frecuencia: v('frecuencia'), extras: d.getAll('extras'),
-            nombre: v('nombre'), telefono: tel, email: email, localidad: v('localidad'), mensaje: v('mensaje'),
+            nombre: v('nombre'), telefono: tel, email: email, direccion: dir, mensaje: v('mensaje'),
             privacidad: !!d.get('privacidad'), web: v('web')
           })
         });

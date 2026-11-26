@@ -96,7 +96,9 @@ function doPost(e) {
   if (d.tipo === 'opinion') return opinion(d);
 
   var nombre = texto(d.nombre, 120), email = texto(d.email, 160), telefono = texto(d.telefono, 40);
-  if (!nombre || (!email && !telefono) || d.privacidad !== true) return respuesta({ ok: false, error: 'faltan' });
+  // Dirección completa de la limpieza, obligatoria desde el 26/11/2026 (con al menos un número: portal o código postal)
+  var direccion = texto(d.direccion, 200);
+  if (!nombre || (!email && !telefono) || direccion.length < 8 || !/\d/.test(direccion) || d.privacidad !== true) return respuesta({ ok: false, error: 'faltan' });
   if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return respuesta({ ok: false, error: 'correo' });
 
   if (!dentroDelLimite()) return respuesta({ ok: false, error: 'limite' });
@@ -111,7 +113,7 @@ function doPost(e) {
     ['Nombre', nombre],
     ['Teléfono', telefono || '—'],
     ['Correo', email || '—'],
-    ['Localidad', texto(d.localidad, 120) || '—'],
+    ['Dirección', direccion],
     ['Mensaje', texto(d.mensaje, 3000) || '—']
   ];
 
